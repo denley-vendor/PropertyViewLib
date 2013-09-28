@@ -1,0 +1,3167 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0055)http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx -->
+<HTML><HEAD><TITLE>PropertyViewLib - CodeProject</TITLE><LINK 
+href="PropertyViewLib - CodeProject.files/CodeProject.min.css" type=text/css 
+rel=stylesheet><LINK 
+href="PropertyViewLib - CodeProject.files/navmenu_ie6.min.css" type=text/css 
+rel=stylesheet>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<META http-equiv=X-UA-Compatible content=IE=edge,chrome=1>
+<META 
+content="A control for easy property control.; Author: Jesper Knudsen; Section: Tabs &amp; Property Pages; Chapter: Desktop Development" 
+name=Description>
+<META 
+content="VC6, Windows, MFC, Dev, Intermediate,Tabs &amp; Property Pages,Desktop Development,Free source code, tutorials" 
+name=Keywords>
+<META content="Jesper Knudsen" name=Author>
+<META content=General name=Rating>
+<META content="index, follow" name=Robots>
+<META content="1 days" name=Revisit-After>
+<META content="The Code Project" name=application-name>
+<META content=RP2bNCUeOmNkkJesEnU8X3UyTbqIcCKP0CmdwU8in5k 
+name=google-site-verification>
+<META content=#FF9900 name=msapplication-navbutton-color>
+<META content="Your Development Resource." name=msapplication-tooltip>
+<META content=http://www.codeproject.com/?pinned=true 
+name=msapplication-starturl>
+<META 
+content=name=Homepage;action-uri=http://www.codeproject.com/;icon-uri=http://www.codeproject.com/favico.ico 
+name=msapplication-task>
+<META 
+content="name=Latest Articles;action-uri=http://www.codeproject.com/script/articles/Latest.aspx;icon-uri=http://www.codeproject.com/favico.ico" 
+name=msapplication-task>
+<META 
+content="name=Questions and Answers;action-uri=http://www.codeproject.com/script/Answers/;icon-uri=http://www.codeproject.com/favico.ico" 
+name=msapplication-task>
+<META 
+content="name=The Lounge;action-uri=http://www.codeproject.com/Lounge.aspx;icon-uri=http://www.codeproject.com/favico.ico" 
+name=msapplication-task><LINK href="//ajax.googleapis.com" 
+rel=dns-prefetch><LINK href="/KB/tabs/PropertyViewLib.aspx" rel=canonical><LINK 
+title="CodeProject Latest articles - All Topics" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=1" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - MFC/C++" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=2" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - C#" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=3" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - VB.NET" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=6" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - Mobile" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=18" 
+type=application/rss+xml rel=alternate><LINK 
+title="CodeProject Latest articles - ASP.NET" 
+href="http://www.codeproject.com/webservices/articlerss.aspx?cat=4" 
+type=application/rss+xml rel=alternate><LINK title="CodeProject Lounge Postings" 
+href="http://www.codeproject.com/webservices/LoungeRSS.aspx" 
+type=application/rss+xml rel=alternate><LINK title=CodeProject 
+href="http://www.codeproject.com/info/OpenSearch.xml" 
+type=application/opensearchdescription+xml rel=search><LINK href="/favicon.ico" 
+type=image/ico rel=icon><LINK href="/favicon.ico" type=image/ico 
+rel="shortcut icon"><LINK href="/images/FavIcon-Apple.png" type=image/png 
+rel=apple-touch-icon>
+<SCRIPT language=Javascript type=text/javascript>//<![CDATA[
+if(top!=self)top.location.href=location.href; if(typeof(DemoUrl)!="undefined")document.write(unescape('%3Cme')+'ta http'+'-equiv="re' +'fresh" con'+'tent="1;url='+DemoUrl+unescape('"%3CE'));
+function SelfCheck(){ return window.confirm("You are about to reply to your own message. Is this really what you want?");}
+var smoothScroll = false;
+var Selected = "-1";
+function Pin(elm){
+ CloseMsg(Selected);
+ Selected=''
+ var wrk=elm.parentNode; if(wrk)wrk=wrk.children[0];
+ var fc=elm?elm.firstChild:null;
+ if (wrk&&!wrk.pinned) {
+  OpenMsg(wrk.name, true);wrk.pinned=true;fc.src='http://s.codeproject.com/script/forums/images/pinned.gif';fc.title='Pinned. Click to unpin'
+ } else {
+  wrk.pinned=false;CloseMsg(wrk.name); fc.src='http://s.codeproject.com/script/forums/images/pin.gif';fc.title='Click to pin message'
+ }
+ return false;
+}
+function CloseMsg(msgId) {
+ if(!msgId||msgId==''||msgId<0)return;
+ var lnk=document.getElementsByName(msgId);
+ if(lnk&&lnk.length>0&&lnk[0].pinned)return;
+ var hed=document.getElementById('F' + msgId.toString() + '_h0');
+ if(hed) hed.className = hed.className.replace("Sel", "UnSel");
+ var bdy=document.getElementById('F' + msgId.toString() + '_h1');
+ if(bdy) bdy.style.display = 'none';
+}
+function OpenMsg(msgId, keep) {
+ if(!msgId||msgId==''||msgId<0)return;
+ var bdy=document.getElementById('F' + msgId.toString() + '_h1');
+ if(bdy){
+  var lnk=document.getElementsByName(msgId);
+  if(lnk&&lnk.length>0&&lnk[0].pinned)keep=true;
+  if(keep&&bdy.style.display!='none')return;
+  if(bdy.style.display=='none') bdy.style.display='';
+  else bdy.style.display = 'none';
+ }
+ var hed=document.getElementById('F' + msgId.toString() + '_h0');
+ if (hed) hed.className = hed.className.replace('UnSel', 'Sel');
+ if(bdy&&hed&&bdy.style.display!='none'){
+  var webkitWeird=document.documentElement.scrollTop < document.body.scrollTop;
+  if (!webkitWeird)document.body.scrollTop = getRealPos(hed, 'Top') - document.body.clientHeight/10;
+  EnsureMessageVisible(msgId, true);
+ }
+}
+function EnsureMessageVisible(msgID, bShowTop) {
+	var webkitWeird = document.documentElement.scrollTop < document.body.scrollTop;
+	var msgHeader = document.getElementById('F' + msgID + '_h0');
+	var msgBody = document.getElementById('F' + msgID + '_h1');
+	if (!msgBody || !msgHeader) return;
+	var scrollContainer = document.documentElement;
+	var top = getRealPos(msgHeader, 'Top');
+	var bottom = getRealPos(msgBody, 'Top') + msgBody.offsetHeight;
+	var scrollTop = webkitWeird? scrollTop = document.body.scrollTop:document.documentElement.scrollTop;
+	if (scrollTop > top && !bShowTop) scrollTop = top - scrollContainer.clientHeight / 10;
+	if (scrollTop + scrollContainer.clientHeight < bottom) scrollTop = bottom - scrollContainer.clientHeight;
+	if (scrollTop > top && bShowTop) scrollTop = top - scrollContainer.clientHeight / 10;
+ if (smoothScroll){
+  if (webkitWeird) $(document.body).stop().animate({'scrollTop' : scrollTop}, 'fast');
+  else $(scrollContainer).stop().animate({'scrollTop' : scrollTop}, 'fast');
+ } else {
+  if (webkitWeird) document.body.scrollTop = scrollTop;
+  else scrollContainer.scrollTop = scrollTop;
+ }
+}
+function getRealPos(i,which) {
+	iPos = 0;
+	while (i!=null)  {
+		iPos += i['offset' + which];
+		i = i.offsetParent;
+	}
+	return iPos;
+}
+var switchCallback;
+function SwitchMessage(e, msgId) {
+  if (msgId) msgId=msgId.toString();
+  else {
+    if(!e)e=window.event;
+    var target=e.target?e.target:e.srcElement;
+    while(target&&target.className!='message-link')target=target.parentNode;
+    if(!target||target.className!='message-link')return;
+    if(target.pinned){/*Selected='';*/return false;}
+    msgId=target.name;
+  }
+  CloseMsg(Selected)
+  if(Selected==msgId) Selected='';
+  else { OpenMsg(msgId, false); Selected=msgId;}
+  if (e){if(e.preventDefault)e.preventDefault;else e.returnValue=false;}
+    if(switchCallback)switchCallback(null, msgId)
+  return false;
+}
+
+
+//]]>
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.5626" name=GENERATOR></HEAD>
+<BODY class="ie ie6"><A 
+href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#Main"><IMG 
+class=access-link alt="Click here to Skip to main content" 
+src="PropertyViewLib - CodeProject.files/t.gif"></A> 
+<DIV class=page-background>
+<DIV class=container-content id=A>
+<DIV class="container nav-memberbar clearfix">
+<DIV class="member-stats float-left">8,165,547 members and growing! (40,411 
+online)</DIV>
+<DIV class=float-left></DIV>
+<DIV class=float-right>
+<SCRIPT type=text/javascript>//<!--
+	function doSubmit(secure)
+	{
+		if (secure)
+			document.subForm.action = "https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx"
+		else
+			document.subForm.action = "/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx"
+		document.subForm.submit();
+		return true;
+	}//-->
+	</SCRIPT>
+<A name=SignUp></A>
+<FORM class=tight id=subForm name=subForm 
+action=/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx 
+method=post><INPUT id=FormName type=hidden value=MenuBarForm name=FormName> 
+Email <INPUT class=small-text id=Email style="WIDTH: 150px" name=Email> Password 
+<INPUT class=small-text id=Password style="WIDTH: 60px" type=password 
+name=Password> <INPUT class=button onclick="return doSubmit(false);" type=submit value="Sign in"> 
+<INPUT class=align-bottom title="Sign on securely" 
+onclick="return doSubmit(true);" type=image 
+src="PropertyViewLib - CodeProject.files/secure.png">
+<SCRIPT type=text/javascript>
+function Join(){document.location.href='http://www.codeproject.com/script/Membership/Modify.aspx';return false;}
+document.write('<input type="button" class="button" onclick="return Join();" value="Join"');
+document.write('<input type="hidden" name="fld_quicksign" value="true" />');
+</SCRIPT>
+ <SPAN class=nowrap><INPUT id=RememberMeCheck type=checkbox CHECKED value=1 
+name=RememberMeCheck> <LABEL for=RememberMeCheck>Remember&nbsp;me?</LABEL> 
+</SPAN>&nbsp; <A id=ctl00_MemberMenu_SendPassword 
+href="http://www.codeproject.com/script/Membership/SendPassword.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Lost 
+password?</A> </FORM></DIV></DIV>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD class=header><A href="http://www.codeproject.com/"><IMG id=ctl00_Logo 
+      title="The Code Project" 
+      style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px" 
+      alt=Home src="PropertyViewLib - CodeProject.files/logo225x90.gif"></A></TD>
+    <TD class=header align=right>
+      <DIV class=lqm_ad lqm_tags="VC6,Windows,MFC,Dev,Intermediate" 
+      lqm_format="728x90" lqm_zone="77" 
+      lqm_publisher="lqm.codeproject.site"></DIV></TD></TR></TBODY></TABLE>
+<TABLE class="contrast1-background extended" cellSpacing=0 cellPadding=0>
+  <TBODY>
+  <TR>
+    <TD noWrap>
+      <DIV class="navbar clearfix">
+      <UL id=nav>
+        <LI><A class=down id=ctl00_TopNavBar_Home 
+        href="http://www.codeproject.com/">Home</A> </LI>
+        <LI><A class="down selected" id=ctl00_TopNavBar_Art 
+        href="http://www.codeproject.com/script/Articles/Latest.aspx">Articles</A> 
+
+        <UL>
+          <LI><A class="fly last" id=ctl00_TopNavBar_ArtTopicList 
+          href="http://www.codeproject.com/script/Content/SiteMap.aspx">Chapters 
+          and Sections</A> </LI>
+          <LI><A class="fly break" id=ctl00_TopNavBar_ArtSearch 
+          href="http://www.codeproject.com/search.aspx">Search</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_ArtLatestArts 
+          href="http://www.codeproject.com/script/Articles/Latest.aspx?at=1,3,7">Latest 
+          Articles</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_ArtLatestTips 
+          href="http://www.codeproject.com/script/Articles/Latest.aspx?at=6,8">Latest 
+          Tips/Tricks</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_ArtTop 
+          href="http://www.codeproject.com/script/Articles/TopArticles.aspx?ta_so=4">Top 
+          Articles</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_ArtBeginner 
+          href="http://www.codeproject.com/search.aspx?aidlst=152&amp;sa_us=True">Beginner 
+          Articles</A> </LI>
+          <LI id=ctl00_TopNavBar_VideosLink><A class=fly 
+          id=ctl00_TopNavBar_ArtVideoArticles 
+          href="http://www.codeproject.com/script/Articles/VideoArticleList.aspx">Video 
+          Articles</A> </LI>
+          <LI><A class="fly break" id=ctl00_TopNavBar_ArtBlogArticles 
+          href="http://www.codeproject.com/script/Articles/BlogArticleList.aspx">Technical 
+          Blogs</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_ArtPostArticle 
+          href="http://www.codeproject.com/script/Articles/Submit.aspx">Post an 
+          Article</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_ArtPostTipTrick 
+          href="http://www.codeproject.com/Tips/post.aspx">Post Tip &amp; 
+          Trick</A> </LI>
+          <LI><A class="fly break" id=ctl00_TopNavBar_ArtPostBlog 
+          href="http://www.codeproject.com/script/Articles/BlogFeed.aspx">Post 
+          your Blog</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_ArtGuide 
+          href="http://www.codeproject.com/info/Submit.aspx">Posting/Update 
+          Guidelines</A> </LI>
+          <LI><A class="fly last" id=ctl00_TopNavBar_ArtCompetition 
+          href="http://www.codeproject.com/script/Awards/CurrentCompetitions.aspx?cmpTpId=1">Article 
+          Competition</A> </LI></UL></LI>
+        <LI><A id=ctl00_TopNavBar_Answers 
+        href="http://www.codeproject.com/script/Answers/List.aspx?tab=active">Quick 
+        Answers</A> 
+        <UL>
+          <LI id=ctl00_TopNavBar_AQL><A class="fly highlight" 
+          id=ctl00_TopNavBar_ArticleQuestion 
+          href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#_comments">Ask 
+          a Question about this article</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_QAAsk 
+          href="http://www.codeproject.com/Questions/ask.aspx">Ask a 
+          Question</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_QAUnanswered 
+          href="http://www.codeproject.com/script/Answers/List.aspx?tab=unanswered">View 
+          Unanswered Questions</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_QALatest 
+          href="http://www.codeproject.com/script/Answers/List.aspx?tab=active">View 
+          All Questions...</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_QATR_ctl00_Tag 
+          style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=81">C# 
+          questions</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_QATR_ctl01_Tag 
+          style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=85">ASP.NET 
+          questions</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_QATR_ctl02_Tag 
+          style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=842">VB.NET 
+          questions</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_QATR_ctl03_Tag 
+          style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=78">C++ 
+          questions</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_QATR_ctl04_Tag 
+          style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=308">C#4.0 
+          questions</A> </LI></UL></LI>
+        <LI><A id=ctl00_TopNavBar_Forums 
+        href="http://www.codeproject.com/script/Forums/List.aspx">Discussions</A> 
+
+        <UL>
+          <LI><A class=fly id=ctl00_TopNavBar_MessageBoardsAll 
+          href="http://www.codeproject.com/script/Forums/List.aspx">All Message 
+          Boards...</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1580997/Application-Lifecycle.aspx">Application 
+          Lifecycle<SPAN class=fly-menu>&gt;</SPAN></A> 
+          <UL>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/369270/Design-and-Architecture.aspx">Design 
+            and Architecture</A> </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1533717/Running-a-Business.aspx">Running 
+            a Business</A> </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1533716/Sales-Marketing.aspx">Sales 
+            / Marketing</A> </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1651/Collaboration-Beta-Testing.aspx">Collaboration 
+            / Beta Testing</A> </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/3304/Work-Training-Issues.aspx">Work 
+            &amp; Training Issues</A> </LI></UL></LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1627782/Free-Tools.aspx">Free 
+          Tools</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1647/C-Cplusplus-MFC.aspx">C / 
+          C++ / MFC<SPAN class=fly-menu>&gt;</SPAN></A> 
+          <UL>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/4486/ATL-WTL-STL.aspx">ATL / 
+            WTL / STL</A> </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/3785/Managed-Cplusplus-CLI.aspx">Managed 
+            C++/CLI</A> </LI></UL></LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1649/Csharp.aspx">C#</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1725/Database.aspx">Database</A> 
+          </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/186301/Hardware-Devices.aspx">Hardware 
+          &amp; Devices<SPAN class=fly-menu>&gt;</SPAN></A> 
+          <UL>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1644/System-Admin.aspx">System 
+            Admin</A> </LI></UL></LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1606152/Hosting-and-Servers.aspx">Hosting 
+          and Servers</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1643/Java.aspx">Java</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1653293/NET-4-5-and-Visual-Studio-11.aspx">.NET 
+          4.5 and Visual Studio 11</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1650/NET-Framework.aspx">.NET 
+          Framework</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/13695/Mobile.aspx">Mobile</A> 
+          </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1540733/Sharepoint.aspx">Sharepoint</A> 
+          </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1004257/Silverlight-WPF.aspx">Silverlight 
+          / WPF</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1646/Visual-Basic.aspx">Visual 
+          Basic</A> </LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1640/Web-Development.aspx">Web 
+          Development<SPAN class=fly-menu>&gt;</SPAN></A> 
+          <UL>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/12076/ASP-NET.aspx">ASP.NET</A> 
+            </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1580227/CSS.aspx">CSS</A> 
+            </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1580226/JavaScript.aspx">JavaScript</A> 
+            </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1213656/PHP.aspx">PHP</A> 
+            </LI></UL></LI>
+          <LI><A class=fly style="PADDING-LEFT: 30px" 
+          href="http://www.codeproject.com/Forums/1645/Site-Bugs-Suggestions.aspx">Site 
+          Bugs / Suggestions</A> </LI>
+          <LI class=heading>Other Languages<SPAN class=fly-menu>&gt;</SPAN> 
+          <UL>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1580229/Hindi.aspx">General 
+            Indian Topics</A> </LI>
+            <LI><A class=fly 
+            href="http://www.codeproject.com/Forums/1580230/Chinese.aspx">General 
+            Chinese Topics</A> </LI></UL></LI></UL></LI>
+        <LI><A id=ctl00_TopNavBar_Zones 
+        href="http://www.codeproject.com/Zones/index.aspx">Learning Zones</A> 
+        <UL><!--<li class="heading">Zones</li>-->
+          <LI><A class=fly href="http://www.codeproject.com/Zones/Commerce/">The 
+          Commerce Zone</A></LI>
+          <LI><A class=fly href="http://www.codeproject.com/Zones/Mobile/">The 
+          Mobile Zone</A></LI>
+          <LI><A class=fly href="http://www.codeproject.com/Zones/Cloud/">The 
+          Cloud Zone</A></LI>
+          <LI><A class=fly href="http://www.codeproject.com/Zones/Hardware/">The 
+          Hardware Zone</A></LI>
+          <LI><A class=fly 
+          href="http://www.codeproject.com/Zones/Parallelism/">The Parallelism 
+          Zone</A></LI>
+          <LI><A class=fly 
+          href="http://www.codeproject.com/Zones/WPF-Silverlight/">The WPF / 
+          Silverlight Zone</A></LI>
+          <LI><A class=fly 
+          href="http://www.codeproject.com/Zones/Flex-Flash/">The Flex / Flash 
+          Zone</A></LI>
+          <LI><A class=fly href="http://www.codeproject.com/Zones/HTML-CSS/">The 
+          HTML5 / CSS3 Zone</A></LI>
+          <LI><A class=fly 
+          href="http://www.codeproject.com/Zones/SqlServer/">The SQL 
+          Zone</A></LI>
+          <LI><A class="fly break" 
+          href="http://www.codeproject.com/Zones/WhitePapers/">WhitePapers / 
+          Webcasts</A> </LI>
+          <LI><A class="fly last" id=ctl00_TopNavBar_Solutions 
+          href="http://www.codeproject.com/kb/Solution-Center/">Solutions 
+          Center</A> </LI></UL></LI>
+        <LI><A id=ctl00_TopNavBar_Features 
+        href="http://www.codeproject.com/Feature/">Features</A> 
+        <UL>
+          <LI><A class=fly id=ctl00_TopNavBar_WhosWho 
+          href="http://www.codeproject.com/script/Membership/Profiles.aspx">Who's 
+          Who</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_MVPs 
+          href="http://www.codeproject.com/script/Awards/MVPWinners.aspx">Most 
+          Valuable Professionals</A> </LI>
+          <LI><A class="fly break" id=ctl00_TopNavBar_Companies 
+          href="http://www.codeproject.com/script/Membership/Profiles.aspx?mgtid=1&amp;mgm=True">Company 
+          Listings</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_Catalog 
+          href="http://www.codeproject.com/script/Catalog/List.aspx">Component 
+          &amp; Service Catalog</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_Comps 
+          href="http://www.codeproject.com/script/Awards/CurrentCompetitions.aspx?cmpTpId=1&amp;awsac=true">Competitions</A> 
+          </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_News 
+          href="http://www.codeproject.com/script/News/List.aspx">News</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_TechSummit 
+          href="http://www.codeproject.com/TechSummit/">Tech Summits</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_Insider 
+          href="http://www.codeproject.com/Feature/Insider/">Daily Insider</A> 
+          </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_Newsletters 
+          href="http://www.codeproject.com/script/Mailouts/Archive.aspx?mtpid=1">Newsletter 
+          archive</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_PressRelease 
+          href="http://www.codeproject.com/script/PressReleases/Preview.aspx">Press 
+          Releases</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_Surveys 
+          href="http://www.codeproject.com/script/Surveys/List.aspx">Surveys</A> 
+          </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_Stuff 
+          href="http://www.codeproject.com/Info/Stuff.aspx">CodeProject 
+          Stuff</A> </LI>
+          <LI><A class="fly last" id=ctl00_TopNavBar_AddIn 
+          href="http://www.codeproject.com/Services/Addins/">The Code Project VS 
+          2008 add-in</A> </LI></UL></LI>
+        <LI><A id=ctl00_TopNavBar_Help 
+        href="http://www.codeproject.com/KB/FAQs/">Help!</A> 
+        <UL>
+          <LI><A class=fly id=ctl00_TopNavBar_HelpWhatIs 
+          href="http://www.codeproject.com/info/guide.aspx">What is 'The Code 
+          Project'?</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_HelpGeneral 
+          href="http://www.codeproject.com/KB/FAQs/">General FAQ</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_HelpPostQuestion 
+          href="http://www.codeproject.com/Questions/ask.aspx">Post a 
+          Question</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_HelpBugs 
+          href="http://www.codeproject.com/Forums/1645/Site-Bugs-Suggestions.aspx">Bugs 
+          and Suggestions</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_HelpSiteMap 
+          href="http://www.codeproject.com/script/Content/SiteMap.aspx">Site 
+          Directory</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_HelpAdvertise 
+          href="http://lakequincy.com/">Advertise with us</A> </LI>
+          <LI><A class="fly last" id=ctl00_TopNavBar_HelpAboutUs 
+          href="http://www.codeproject.com/info/about.aspx">About Us</A> 
+        </LI></UL></LI>
+        <LI style="MARGIN-LEFT: 10px"><A class=simple id=ctl00_TopNavBar_Lounge 
+        href="http://www.codeproject.com/Lounge.aspx">The Lounge</A> 
+        <UL>
+          <LI><A class=fly id=ctl00_TopNavBar_LoungeLnk 
+          href="http://www.codeproject.com/Lounge.aspx">The Lounge &nbsp;</A> 
+          </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_CleverLnk 
+          href="http://www.codeproject.com/feature/CleverCode.aspx">Clever 
+          Code</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_ShameLnk 
+          href="http://www.codeproject.com/feature/HallOfSHame.aspx">Hall of 
+          Shame</A> </LI>
+          <LI><A class=fly id=ctl00_TopNavBar_SoapBoxLnk 
+          href="http://www.codeproject.com/Forums/1536756/The-Soapbox-2-0.aspx">The 
+          Soapbox</A> </LI></UL></LI></UL></DIV>
+      <SCRIPT type=text/javascript>
+
+function ShowMap(prnt, elmId) {
+	var map = $('#' + elmId);
+	
+	if (!prnt.populated && !prnt.populating) {
+		prnt.populating = true;
+		map.css( { 'height': '400px', 'width': '400px' });
+		map.load("/script/content/ajax/SiteMap.aspx", function() { prnt.populated = true; });
+		prnt.populated = true;
+		prnt.populating = false;
+	}
+
+	if (prnt.populated) {
+		var left = Math.max(map.parent().offset().left, 200);
+		var top = Math.max(map.parent().offset().top, 0);
+		var width = Math.min((($(window).width()-left) * 0.9), 1000);
+		var height = Math.min((($(window).height()-top) * 0.9), 700);
+		map.css('width', width + 'px');
+		map.css('height', height + 'px');
+		map.css('overflow', 'auto');
+		map.css('margin', '0');
+	}
+}
+
+</SCRIPT>
+    </TD>
+    <TD align=right>
+      <DIV class=search-bar>
+      <FORM class=tight name=Search action=/search.aspx method=get>
+      <TABLE class=search cellSpacing=0 cellPadding=0 border=0>
+        <TBODY>
+        <TR>
+          <TD><INPUT class="search " id=sb_tb tabIndex=2 name=q></TD>
+          <TD><INPUT type=image 
+            src="PropertyViewLib - CodeProject.files/search.gif"></TD></TR></TBODY></TABLE>
+      <DIV class=hover-container>
+      <DIV class="search-advanced popup small-text align-left" 
+      id=SearchFilter><B>Search within:<BR></B><INPUT id=sb_kw type=radio 
+      CHECKED value=kw name=sbo><LABEL for=sb_kw>Articles</LABEL><BR><INPUT 
+      id=sb_qa type=radio value=qa name=sbo><LABEL for=sb_qa>Quick 
+      Answers</LABEL><BR><INPUT id=sb_fm type=radio value=fm name=sbo><LABEL 
+      for=sb_fm>Messages</LABEL><BR><INPUT id=sb_ctlk type=radio value=ctlk 
+      name=sbo><LABEL for=sb_ctlk>Product 
+      Catalog</LABEL><BR></DIV></DIV></FORM></DIV></TD></TR></TBODY></TABLE>
+<DIV class="container-article hreview-aggregate">
+<DIV class=container-header>
+<DIV class=header id=ctl00_Header><A name=Main></A><A id=_articleTop 
+name=_articleTop></A>
+<DIV class="clearfix hover-container">
+<DIV class=container>
+<DIV class="breadcrumb float-left"><A 
+href="http://www.codeproject.com/Chapters/1/Desktop-Development.aspx">Desktop 
+Development</A> » <A href="http://www.codeproject.com/KB/tabs/">Tabs &amp; 
+Property Pages</A> » <A 
+href="http://www.codeproject.com/KB/tabs/#General">General</A></DIV></DIV>
+<DIV class=float-right id=ctl00_TitleArea_InfoArea>
+<DIV class=infobox>
+<TABLE class="tight small-text" cellSpacing=1 cellPadding=0>
+  <TBODY>
+  <TR>
+    <TD>Licence&nbsp;</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>First Posted&nbsp;</TD>
+    <TD noWrap><B>14 Apr 2005</B></TD></TR>
+  <TR>
+    <TD>Views&nbsp;</TD>
+    <TD><B>191,004</B></TD></TR>
+  <TR>
+    <TD>Downloads&nbsp;</TD>
+    <TD><B>3,038</B></TD></TR>
+  <TR>
+    <TD>Bookmarked&nbsp;</TD>
+    <TD><B>107 times</B></TD></TR></TBODY></TABLE></DIV></DIV>
+<DIV class=item>
+<H1 class=fn id=ctl00_TitleArea_ArticleTitle>PropertyViewLib</H1></DIV>
+<DIV class=author>By <B><A 
+href="http://www.codeproject.com/script/Membership/View.aspx?mid=95621">Jesper 
+Knudsen</A></B> | 5 Aug 2005 </DIV>
+<DIV class=tags><SPAN class=tags id=ctl00_TitleArea_TagsList_TagWrp><SPAN 
+id=ctl00_TitleArea_TagsList_VisibleTags><SPAN class=t><A 
+href="http://www.codeproject.com/search.aspx?aidlst=4">VC6</A></SPAN><SPAN 
+class=t><A 
+href="http://www.codeproject.com/search.aspx?aidlst=94">Windows</A></SPAN><SPAN 
+class=t><A 
+href="http://www.codeproject.com/search.aspx?aidlst=107">MFC</A></SPAN><SPAN 
+class=t><A 
+href="http://www.codeproject.com/search.aspx?aidlst=118">Dev</A></SPAN><SPAN 
+class=t><A 
+href="http://www.codeproject.com/search.aspx?aidlst=153">Intermediate</A></SPAN></SPAN> 
+</SPAN></DIV>
+<DIV class="abstract summary"><SPAN id=ctl00_TitleArea_ArticleDescr>A control 
+for easy property control.</SPAN></DIV></DIV></DIV>
+<DIV class=header-sidebar id=ctl00_HeadSide>
+<DIV class=align-left style="HEIGHT: 24px"> </DIV>
+<DIV class="bold pad-top">See Also</DIV>
+<UL class="outdent small-text" style="MARGIN-LEFT: 5px">
+  <LI><A id=ctl00_SeeAlso_LikeThis 
+  href="http://www.codeproject.com/search.aspx?q=PropertyViewLib">More like 
+  this</A> 
+  <LI><A id=ctl00_SeeAlso_ByAuthor 
+  href="http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=95621">More 
+  by this author</A> </LI></UL></DIV></DIV>
+<DIV class=container-nav id=ctl00_Nav>
+<DIV class="tabs-container clearfix" id=ctl00_TabContainer>
+<DIV class="float-right action-links"><A class=tooltip 
+id=ctl00_ActionLinks_PrintLnk 
+href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?display=Print"><IMG 
+style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-RIGHT-WIDTH: 0px" 
+height=24 src="PropertyViewLib - CodeProject.files/print.gif" width=24> 
+<DIV class=speech-bubble-container-up>
+<DIV class=speech-bubble-up>Print Article</DIV>
+<DIV class=speech-bubble-pointer-up>
+<DIV class=speech-bubble-pointer-up-inner></DIV></DIV></DIV></A><SPAN 
+id=SBI><IMG id=ctl00_ActionLinks_AddTo_Img style="VERTICAL-ALIGN: middle" 
+height=24 alt=add src="PropertyViewLib - CodeProject.files/share_drop24.png" 
+width=37> </SPAN>
+<DIV class=list-socialbookmark id=ATD></DIV><SPAN class=tooltip>
+<DIV class=speech-bubble-container-up>
+<DIV class=speech-bubble-up>Add to your CodeProject bookmarks</DIV>
+<DIV class=speech-bubble-pointer-up>
+<DIV class=speech-bubble-pointer-up-inner></DIV></DIV></DIV></SPAN><A 
+class="tooltip anchorLink" id=discussAnch 
+href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#_comments"><IMG 
+style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-RIGHT-WIDTH: 0px" 
+height=24 alt=Discuss src="PropertyViewLib - CodeProject.files/discuss.gif" 
+width=24> 
+<DIV class=speech-bubble-container-up>
+<DIV class=speech-bubble-up>Discuss this article</DIV>
+<DIV class=speech-bubble-pointer-up>
+<DIV class=speech-bubble-pointer-up-inner></DIV></DIV></DIV></A><SPAN 
+class="subdue small-text align-middle" id=ctl00_ActionLinks_cmtcnt 
+style="MARGIN-LEFT: -4px">211</SPAN> </DIV>
+<DIV class=float-left>
+<DIV class="tabs float-left">
+<TABLE cellSpacing=0 cellPadding=0>
+  <TBODY>
+  <TR>
+    <TD class=tab-selected>Article</TD>
+    <TD class=tab-unselected><A 
+      href="http://www.codeproject.com/script/Articles/ViewDownloads.aspx?aid=10125">Browse 
+      Code</A></TD>
+    <TD class=tab-unselected><A 
+      href="http://www.codeproject.com/script/Articles/Statistics.aspx?aid=10125">Stats</A></TD>
+    <TD class=tab-unselected><A 
+      href="http://www.codeproject.com/script/Articles/ListVersions.aspx?aid=10125">Revisions</A></TD></TR></TBODY></TABLE></DIV>
+<DIV class=float-left style="MARGIN-LEFT: 15px">
+<DIV class=tooltip id=ctl00_CurRat name="CurRat_10125">
+<TABLE class=small-text cellSpacing=0 cellPadding=0>
+  <TBODY>
+  <TR>
+    <TD class=nowrap><SPAN id=ctl00_ArticleRating_VI>
+      <DIV class="nowrap rating-stars" 
+      style="WIDTH: 120px; POSITION: relative; HEIGHT: 24px">
+      <DIV class="clipped align-left float-left" 
+      style="WIDTH: 117px; HEIGHT: 24px"><IMG 
+      style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px" 
+      src="PropertyViewLib - CodeProject.files/stars-fill.png"> </DIV>
+      <DIV class=clipped 
+      style="WIDTH: 3px; POSITION: relative; HEIGHT: 24px"><IMG 
+      style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; RIGHT: 0px; BORDER-BOTTOM-WIDTH: 0px; POSITION: absolute; TOP: 0px; BORDER-RIGHT-WIDTH: 0px" 
+      src="PropertyViewLib - CodeProject.files/stars-empty.png"> 
+      </DIV></DIV></SPAN></TD>
+    <TD class=nowrap id=ctl00_ArticleRating_VR>&nbsp;<SPAN 
+      id=ctl00_ArticleRating_VotesR>&nbsp;<SPAN class=rating>4.89</SPAN> (<SPAN 
+      class=count>59 votes</SPAN>)</SPAN> </TD></TR></TBODY></TABLE>
+<DIV class=speech-bubble-container-up id=ctl00_RB>
+<DIV class=speech-bubble-up style="WIDTH: 150px! important">
+<DIV>
+<TABLE class=feature title="Voting Distribution. Recent data only" height=50 
+cellSpacing=0 cellPadding=0 width="100%">
+  <TBODY>
+  <TR>
+    <TD class="chart-column rating-ignore-vote" 
+    title="Outside deviation limits - not included in score."><IMG 
+      title="1 vote, 1.7%" height=1 alt="1 vote, 1.7%" 
+      src="PropertyViewLib - CodeProject.files/pollcol.gif" width=20 
+      border=0><BR><SPAN title="1 vote">1</SPAN></TD>
+    <TD class="chart-column rating-ignore-vote" 
+    title="Outside deviation limits - not included in score."><IMG title="" 
+      height=1 alt="" 
+      src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(1).gif" 
+      width=20 border=0><BR><SPAN title="0 votes">2</SPAN></TD>
+    <TD class="chart-column rating-ignore-vote" 
+    title="Outside deviation limits - not included in score."><IMG title="" 
+      height=1 alt="" 
+      src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(1).gif" 
+      width=20 border=0><BR><SPAN title="0 votes">3</SPAN></TD>
+    <TD class=chart-column><IMG title="7 votes, 11.9%" height=6 
+      alt="7 votes, 11.9%" src="PropertyViewLib - CodeProject.files/pollcol.gif" 
+      width=20 border=0><BR><SPAN title="7 votes">4</SPAN></TD>
+    <TD class=chart-column><IMG title="51 votes, 86.4%" height=50 
+      alt="51 votes, 86.4%" 
+      src="PropertyViewLib - CodeProject.files/pollcol.gif" width=20 
+      border=0><BR><SPAN title="51 votes">5</SPAN></TD></TR></TBODY></TABLE>
+<DIV class="small-text align-center">4.89/5 - 59 votes</DIV>
+<DIV class="small-text align-center subdue">1 removed</DIV>
+<DIV class="small-text align-center subdue">μ 4.76, σ<SUB>a</SUB> 1.05 [<A 
+href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</A>]</DIV></DIV></DIV>
+<DIV class=speech-bubble-pointer-up>
+<DIV 
+class=speech-bubble-pointer-up-inner></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class=tabs-sidebar id=ctl00_HeadSideFoot>
+<DIV>Sponsored Links</DIV></DIV></DIV>
+<DIV class=container-text>
+<DIV class=text id=AT>
+<FORM id=aspnetForm 
+style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px" 
+name=aspnetForm action=/KB/tabs/PropertyViewLib.aspx method=post>
+<DIV><INPUT id=__VIEWSTATE type=hidden 
+value=/wEPDwUKMjExOTQzNjk4Mw9kFgJmD2QWAgIGD2QWCAIRD2QWAgIBD2QWBmYPDxYCHgtOYXZpZ2F0ZVVybAUyL3NjcmlwdC9BcnRpY2xlcy9BZG1pbi9FZGl0b3JDaG9pY2UuYXNweD9haWQ9MTAxMjVkZAICDw8WAh8ABTgvc2NyaXB0L0F3YXJkcy9BZG1pbi9Bd2FyZE9iamVjdC5hc3B4P29iaWQ9MTAxMjUmb2J0aWQ9MmRkAgoPDxYCHwAFLy9zY3JpcHQvQXJ0aWNsZXMvQWRtaW4vUXVldWVFZGl0LmFzcHg/YWlkPTEwMTI1ZGQCEw9kFgICAQ9kFgICAQ9kFgZmDw8WAh8ABSsvS0IvdGFicy9Qcm9wZXJ0eVZpZXdMaWIuYXNweD9kaXNwbGF5PVByaW50ZGQCBA8WAh4JaW5uZXJodG1sBQMyMTFkAgUPDxYCHwAFJi9zY3JpcHQvQXJ0aWNsZXMvUmVwb3J0LmFzcHg/YWlkPTEwMTI1ZGQCFQ9kFgICDQ9kFgYCAg8WAh4GYWN0aW9uBR0vS0IvdGFicy9Qcm9wZXJ0eVZpZXdMaWIuYXNweBYIAgEPZBYCAgEPFgIeB1Zpc2libGVoZAIDD2QWAgICD2QWAgIBDxBkZBYAZAILDxYCHgtfIUl0ZW1Db3VudAIBZAIND2QWAgIBDxYCHgRUZXh0BUQ8YSAgaHJlZj0iL0tCL3RhYnMvUHJvcGVydHlWaWV3TGliLmFzcHgjX2FydGljbGVUb3AiPkFydGljbGUgVG9wPC9hPmQCCQ8PFgQfBQUJUGVybWFsaW5rHwAFHS9LQi90YWJzL1Byb3BlcnR5Vmlld0xpYi5hc3B4ZGQCFw8WAh8FBSBDb3B5cmlnaHQgMjAwNSBieSBKZXNwZXIgS251ZHNlbmQCFw9kFgICBQ8PFgIfA2hkZGTAGQGY7ebxtG5PGp2+jhzvhpj5yA== 
+name=__VIEWSTATE> </DIV>
+<DIV><INPUT id=__EVENTVALIDATION type=hidden 
+value=/wEWCAL0k4r4DgLAlMXDBwLBlMXDBwLClMXDBwLDlMXDBwLElMXDBwLP+++tCwK5upDkC5msxMbglBUYQ8ZNRFmJueY6zIMu 
+name=__EVENTVALIDATION> </DIV><!-- Article Text Start -->
+<DIV id=contentdiv><!-- Article Starts -->
+<UL class=download>
+  <LI><A 
+  href="http://www.codeproject.com/KB/tabs/PropertyViewLib/PropertyViewLib_executable.zip">Download 
+  demo executable - 36.3 Kb</A> 
+  <LI><A 
+  href="http://www.codeproject.com/KB/tabs/PropertyViewLib/PropertyViewLib_project.zip">Download 
+  demo project - 132 Kb</A> </LI></UL>
+<P><IMG height=589 alt="Sample Image" 
+src="PropertyViewLib - CodeProject.files/PropertyViewLib.gif" width=346></P>
+<H2>Introduction</H2>
+<P>This control lets you edit variables of objects. The control is designed to 
+ease as much pain as possible, and as a result, only a single line of code is 
+needed to represent each property in the control. Yes, other property controls 
+are out there already, but this one, in my humble opinion, offers exceptional 
+ease of use. Please comment in any way you like.</P>
+<H2>Using the code</H2>
+<P>I'll let the code speak for itself, one code strip tells more than a thousand 
+words, so let's dig in.</P>
+<H3>The IPropertyHost interface</H3>
+<P>The control is all about implementing the <CODE>IPropertyHost</CODE> 
+interface. Objects that need be represented in the property control, must 
+implement this interface. The control will talk to the represented object 
+through this interface.</P><PRE><SPAN class=code-comment>//</SPAN><SPAN class=code-comment>To have objects represented in the control, implement this interface
+</SPAN><SPAN class=code-comment>//</SPAN><SPAN class=code-comment>and SetPropertyHost() on the control. The control will shortly after
+</SPAN><SPAN class=code-comment>//</SPAN><SPAN class=code-comment>call GetProperties() from the parsed in object, in where you list
+</SPAN><SPAN class=code-comment>//</SPAN><SPAN class=code-comment>the properties (data members) og the object.
+</SPAN><SPAN class=code-keyword>class</SPAN> IPropertyHost
+{
+
+<SPAN class=code-keyword>public</SPAN>:    
+
+   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>The control will ask hosts for propertylist here. This is done when
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>propertyhost is set in the control. Add property items to the list
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>through the parsed in list.
+</SPAN>   <SPAN class=code-keyword>virtual</SPAN> <SPAN class=code-keyword>void</SPAN> GetProperties( EPropList&amp; PropList )
+   {
+      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>add variables to the proplist
+</SPAN>   }
+
+   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>Called from the view when the property is changing to allow veto from
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>property host. Return true if the change is ok, else false. Override
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>if special constraints are bound to the property. This default
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>implementation allows for any change.
+</SPAN>   <SPAN class=code-keyword>virtual</SPAN> <SPAN class=code-keyword>bool</SPAN> PropertyChanging( <SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>void</SPAN>* pProperty , <SPAN class=code-keyword>void</SPAN>* pNewValue )
+   {
+      <SPAN class=code-keyword>return</SPAN> <SPAN class=code-keyword>true</SPAN>;    <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>yes, please change
+</SPAN>   }
+
+   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>the control will ask you if the property is enabled each time it is
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>redrawn. This enables you to disable a property on the fly.
+</SPAN>   <SPAN class=code-keyword>virtual</SPAN> <SPAN class=code-keyword>bool</SPAN> IsPropertyEnabled( <SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>void</SPAN>* pProperty )
+   {
+      <SPAN class=code-keyword>return</SPAN> <SPAN class=code-keyword>true</SPAN>;
+   }
+}</PRE>
+<H3>Getting objects represented in the control</H3>
+<P>This example shows essentials. Overriding <CODE>GetProperties()</CODE> is all 
+that need be done to get started! As you can see, you pass the address of the 
+variable, and the control will read and write to the member through this.</P><PRE><SPAN class=code-keyword>class</SPAN> SomeObject : <SPAN class=code-keyword>public</SPAN> IPropertyHost
+{
+
+   <SPAN class=code-keyword>int</SPAN>     m_nInteger;
+   <SPAN class=code-keyword>double</SPAN>  m_dAngle;
+   <SPAN class=code-keyword>int</SPAN>     m_nComboIndex;
+   CString m_sText;
+   
+<SPAN class=code-keyword>public</SPAN>:
+   
+   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment> IPropertyHost
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>
+</SPAN>
+   <SPAN class=code-keyword>virtual</SPAN> <SPAN class=code-keyword>void</SPAN> GetProperties( EPropList&amp; PropList )
+   {
+      PropList.AddPropInt   ( <SPAN class=code-keyword>this</SPAN> , <SPAN class=code-string>"</SPAN><SPAN class=code-string>Integer"</SPAN> , &amp;m_nInteger    );
+      PropList.AddPropDouble( <SPAN class=code-keyword>this</SPAN> , <SPAN class=code-string>"</SPAN><SPAN class=code-string>Angle"</SPAN>   , &amp;m_dAngle      );
+      PropList.AddPropCombo ( <SPAN class=code-keyword>this</SPAN> , <SPAN class=code-string>"</SPAN><SPAN class=code-string>Combo"</SPAN>   , &amp;m_nComboIndex )
+      -<SPAN class=code-keyword>&gt;</SPAN>AddString( <SPAN class=code-string>"</SPAN><SPAN class=code-string>Choise0"</SPAN> )
+      -<SPAN class=code-keyword>&gt;</SPAN>AddString( <SPAN class=code-string>"</SPAN><SPAN class=code-string>Choise1"</SPAN> )
+      -<SPAN class=code-keyword>&gt;</SPAN>AddString( <SPAN class=code-string>"</SPAN><SPAN class=code-string>Choise2"</SPAN> );
+      PropList.AddPropString( <SPAN class=code-keyword>this</SPAN> , <SPAN class=code-string>"</SPAN><SPAN class=code-string>String"</SPAN>  , &amp;m_sText       );
+   }
+   
+   <SPAN class=code-keyword>virtual</SPAN> <SPAN class=code-keyword>bool</SPAN> PropertyChanging( <SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>void</SPAN>* pProperty , <SPAN class=code-keyword>void</SPAN>* pNewValue );
+   <SPAN class=code-keyword>virtual</SPAN> <SPAN class=code-keyword>bool</SPAN> IsPropertyEnabled( <SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>void</SPAN>* pProperty );
+
+};</PRE>
+<P>To represent objects in the control, let that object implement the 
+<CODE>IPropertyHost</CODE> interface. In the above example, 
+<CODE>SomeObject</CODE> implements the <CODE>IPropertyHost</CODE> interface and 
+overrides <CODE>GetProperties()</CODE>. Call <CODE>SetPropertyHost()</CODE> on 
+the control passing an instance of <CODE>SomeObject</CODE>, to have that 
+instance represented. The control will shortly after, ask the property host (the 
+<CODE>SomeObject</CODE> instance) to list its properties. This way, 
+<CODE>SomeObject</CODE> is itself responsible for listing the relevant 
+properties, within its own scope, to the user. Nothing else than 
+<CODE>GetProperties()</CODE> function need be changed in order to add or remove 
+properties.</P>
+<H3>Getting notified on changes</H3>
+<P>When the user edits a property, the property host itself is notified about 
+the upcoming change, and can deny the change if inappropriate. The control will 
+notify the host with a call to <CODE>PropertyChanging()</CODE>. Return true if 
+the property can change the value.</P><PRE>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>To get notified on property changes, override this
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>function. If change is allowed, return true to the property
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>control, telling it to actually apply the change.
+</SPAN>   <SPAN class=code-keyword>virtual</SPAN> <SPAN class=code-keyword>bool</SPAN> SomeObject::PropertyChanging( <SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>void</SPAN>* pProperty , 
+                                                    <SPAN class=code-keyword>void</SPAN>* pNewValue )
+   {
+      <SPAN class=code-keyword>bool</SPAN> bPleaseChange = <SPAN class=code-keyword>true</SPAN>;    <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>yes, change is ok!
+</SPAN>
+      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>if the property being changed is the combo box, i
+</SPAN>      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>may want to do something with the new index. the index
+</SPAN>      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>corrosponds the order in which I called AddString()
+</SPAN>      <SPAN class=code-keyword>if</SPAN>( pProperty == &amp;m_nComboIndex )
+      {
+         <SPAN class=code-keyword>int</SPAN> nNewIndex = *(<SPAN class=code-keyword>int</SPAN>*)pNewValue;
+         TRACE(<SPAN class=code-string>"</SPAN><SPAN class=code-string>combo index changing from %d to %d\n"</SPAN>, 
+                          m_nComboIndex , nNewIndex );
+      }
+      
+      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>if angle is being edited, i'll allow change
+</SPAN>      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>only if new value is between 0 and 360.
+</SPAN>      <SPAN class=code-keyword>else</SPAN> <SPAN class=code-keyword>if</SPAN>( pProperty == &amp;m_dAngle )
+      {
+         bPleaseChange = ( <SPAN class=code-digit>0</SPAN> <SPAN class=code-keyword>&lt;</SPAN>= m_dAngle &amp;&amp; m_dAngle <SPAN class=code-keyword>&lt;</SPAN> <SPAN class=code-digit>360</SPAN> );
+      }
+      
+      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>the property control will apply changes
+</SPAN>      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>to the variable if returning true here.
+</SPAN>      <SPAN class=code-keyword>return</SPAN> bPleaseChange;
+   }</PRE>
+<P>The default <CODE>PropertyChanging()</CODE> implementation in 
+<CODE>IPropertyHost</CODE> returns true, allowing all changes. Override this, 
+only if you as a property host need be notified on changes, or if you want to 
+deny a certain change.</P>
+<H3>Enabling and disabling properties on the fly</H3>
+<P>It is possible to gray out, disable, properties on the fly. On refresh, the 
+control will ask the host if a property is enabled or not.</P><PRE>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>to dynamically enable or disable properties, override
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>this function. The control calls this function on
+</SPAN>   <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>the property host, for each property it draws.
+</SPAN>   <SPAN class=code-keyword>virtual</SPAN> <SPAN class=code-keyword>bool</SPAN> SomeObject::IsPropertyEnabled( <SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>void</SPAN>* pProperty )
+   {
+      <SPAN class=code-keyword>bool</SPAN> bEnabled = <SPAN class=code-keyword>true</SPAN>;
+      
+      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>only enable angle property, if
+</SPAN>      <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>combobox is at index 1.
+</SPAN>      <SPAN class=code-keyword>if</SPAN>( pProperty == &amp;m_dAngle )
+      {
+         bEnabled = (m_nComboIndex==1);
+      }
+      
+      <SPAN class=code-keyword>return</SPAN> bEnabled;
+   }</PRE>
+<P>The default <CODE>IsPropertyEnabled()</CODE> implementation returns true, 
+enabling all properties always. Only override this if you need dynamic enabling 
+or disabling. You can disable a property by default when adding the property to 
+the property list in <CODE>GetProperties()</CODE>. This is useful if you have 
+variables that the user can read, but never change. Additional information of 
+some kind.</P>
+<H2>Points of Interest</H2>
+<H3>Property types</H3>
+<P>There are more property types than those shown in the example. Custom 
+property types are easily implemented by subclassing <CODE>EProperty</CODE> or a 
+descendant like <CODE>EIconTextButtonProperty</CODE>.</P>
+<H2>Final words</H2>
+<P>If you find this code useful and use it in an application, I'd like to see a 
+screenshot of your work. This will encourage me to continue working with the 
+control, and make my day. Please send to 'ruskialt' at 'gmail' in the 'com' 
+domain.</P>
+<H2>History</H2>
+<H3>2005-07-27: Improved look and performance + various additional features</H3>
+<UL>
+  <LI><B>Better look &amp; feel</B> 
+  <P>Strings that don't fit are now shortened and suffixed with "..." to fit. 
+  Flicker is reduced, now drawing on memory dc before copying to screen. Node 
+  openings now animated, nodes below parent nodes will fall to their new 
+  position. Splitters now change mouse cursor when hovering or dragging.</P>
+  <LI><B>Performance enhancements</B> 
+  <P>The view will now totally skip drawing properties outside the view. Various 
+  calculations have been moved to only be calculated when 'dirty'.</P>
+  <LI><B>Various minor new features</B> 
+  <P>Numeric types now support hex user input. Added 'special case text output' 
+  for all numeric types. Splitter added to enable comment pane resize. 
+  <CODE>Multidouble</CODE> property added to support monitoring a list of 
+  <CODE><SPAN class=code-keyword>double</SPAN></CODE>s. <CODE>SetType()</CODE> 
+  allows for specifying type of integers, just parse byte width and sign state 
+  of the integer in question.</P>
+  <LI><B>Various bug fixes</B> 
+  <P>Combo box now opens its menu correctly when the view is scrolled. Thousand 
+  separator bug fixed. Scrollbars now update their sizes to fit both open and 
+  closed node states. Hosts adding child hosts using 
+  <CODE>PropList.AddPropHost(<SPAN 
+  class=code-keyword>this</SPAN>,&amp;m_SomeHost)</CODE> are now notified on 
+  child change.</P></LI></UL>
+<H3>2005-04-15: Initial release</H3>
+<UL>
+  <LI><B>Source and article released on CodeProject</B> 
+  <P>Finally this code is released. Thank you CodeProject, for this being 
+  possible.</P></LI></UL></DIV><!-- Article Text End -->
+<H2>License</H2>
+<DIV id=LicenseTerms>
+<P>This article has no explicit license attached to it but may contain usage 
+terms in the article text or the download files themselves. If in doubt please 
+contact the author via the discussion board below.</P>
+<P>A list of licenses authors might use can be found <A 
+href="http://www.codeproject.com/info/Licenses.aspx">here</A></P></DIV>
+<H2 id=ctl00_AboutHeading>About the Author</H2>
+<DIV class=float-right>
+<DIV class=lqm_ad lqm_tags="VC6,Windows,MFC,Dev,Intermediate" 
+lqm_format="300x250" lqm_zone="77" 
+lqm_publisher="lqm.codeproject.site"></DIV></DIV>
+<TABLE cellSpacing=5 cellPadding=0 border=0>
+  <TBODY>
+  <TR vAlign=top>
+    <TD id=ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhotoTable 
+    style="WIDTH: 155px" vAlign=top><B><A 
+      id=ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberProfileLink 
+      href="http://www.codeproject.com/Members/Jesper-Knudsen">Jesper 
+      Knudsen</A></B><BR><BR>
+      <CENTER><IMG id=ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhoto 
+      style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px" 
+      src="PropertyViewLib - CodeProject.files/{D8AC4D3A-9606-4736-9DA1-AD115CA99147}.jpg"></CENTER>
+      <DIV class=small-text><SPAN 
+      id=ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberJobTitle>Web 
+      Developer</SPAN><BR><SPAN 
+      id=ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberCompany></SPAN><BR><SPAN 
+      id=ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberLocation><IMG height=11 
+      alt=Denmark src="PropertyViewLib - CodeProject.files/DK.gif" width=16> 
+      Denmark</SPAN><BR><BR><SPAN 
+      id=ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberType>Member</SPAN><BR></DIV></TD>
+    <TD>Began programming Amiga machine code in 1992. Was into demo 
+      programming and 3D graphics down to the pixel. Switched to PC, C++ and 
+      Java in the late 90's. Graduated B.Sc.EE in 2002, now working in maritime 
+      industry as a software engineer.<BR></TD></TR></TBODY></TABLE><BR>
+<DIV class=clearfix></DIV>
+<DIV class="clearfix voting-bar" id=ctl00_RateArticleRow>
+<DIV class=float-left style="PADDING-TOP: 8px"><A 
+href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#_articleTop">Article 
+Top</A></DIV>
+<DIV class="float-right align-right">
+<DIV class="container-rating small-text" id=ctl00_RateArticle_RateItemWrapper 
+name="RateItem_10125">
+<TABLE class=small-text cellSpacing=0 cellPadding=0 width="100%">
+  <TBODY>
+  <TR>
+    <TD id=ctl00_RateArticle_VoteResultDiv noWrap align=right><SPAN 
+      class=voteRes></SPAN><IMG class=loaderImg style="DISPLAY: none" height=16 
+      alt=loading... src="PropertyViewLib - CodeProject.files/ajax-loader.gif" 
+      width=16> </TD>
+    <TD class=voteTbl style="WHITE-SPACE: nowrap" align=right>
+      <TABLE class=small-text>
+        <TBODY>
+        <TR>
+          <TD id=ctl00_RateArticle_SignIn noWrap><A 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#SignUp">Sign 
+            Up</A> to vote </TD>
+          <TD id=ctl00_RateArticle_StartForm noWrap 
+            align=right><I>&nbsp;&nbsp;Poor</I> </TD>
+          <TD class=nowrap id=ctl00_RateArticle_VoteFormDiv><SPAN 
+            class="tooltip ajaxHist radio voting" id=ctl00_RateArticle_RB><SPAN 
+            id=ctl00_RateArticle_VoteRBL><INPUT id=ctl00_RateArticle_VoteRBL_0 
+            onclick="ChkRtctl00_RateArticle(1, 10125);&#10;$('#ctl00_RateArticle_RCD').show();&#10;;" 
+            type=radio value=1 name=ctl00$RateArticle$VoteRBL><INPUT 
+            id=ctl00_RateArticle_VoteRBL_1 
+            onclick="ChkRtctl00_RateArticle(2, 10125);&#10;$('#ctl00_RateArticle_RCD').show();&#10;;" 
+            type=radio value=2 name=ctl00$RateArticle$VoteRBL><INPUT 
+            id=ctl00_RateArticle_VoteRBL_2 
+            onclick="ChkRtctl00_RateArticle(3, 10125);&#10;$('#ctl00_RateArticle_RCD').show();&#10;;" 
+            type=radio value=3 name=ctl00$RateArticle$VoteRBL><INPUT 
+            id=ctl00_RateArticle_VoteRBL_3 
+            onclick="ChkRtctl00_RateArticle(4, 10125);&#10;$('#ctl00_RateArticle_RCD').show();&#10;;" 
+            type=radio value=4 name=ctl00$RateArticle$VoteRBL><INPUT 
+            id=ctl00_RateArticle_VoteRBL_4 
+            onclick="ChkRtctl00_RateArticle(5, 10125);&#10;$('#ctl00_RateArticle_RCD').show();&#10;;" 
+            type=radio value=5 name=ctl00$RateArticle$VoteRBL></SPAN> </SPAN></TD>
+          <TD id=ctl00_RateArticle_EndForm align=left><I>Excellent</I> </TD>
+          <TD><INPUT class=button id=ctl00_RateArticle_SubmitRateBtn onclick="return PostBack_ctl00_RateArticle_RateItemWrapper();" type=submit value=Vote name=ctl00$RateArticle$SubmitRateBtn> 
+          </TD></TR></TBODY></TABLE><SPAN class=error 
+      id=ctl00_RateArticle_ErrorMessage></SPAN></TD></TR></TBODY></TABLE>
+<DIV class=hover-container>
+<DIV class="rating-comment align-left float-right" id=ctl00_RateArticle_RCD>Add 
+a reason or comment to your vote: <A id=clear-rate_ctl00_RateArticle_RCD 
+title=close 
+href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#">x</A><BR><TEXTAREA class=RateComment style="WIDTH: 98%" rows=5 cols=60></TEXTAREA> 
+<SPAN class=subdue id=ctl00_RateArticle_CommentReq>Votes of 3 or less require a 
+comment</SPAN> </DIV></DIV></DIV></DIV></DIV></FORM>
+<DIV 
+style="PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 0px; MARGIN: auto; OVERFLOW: hidden; WIDTH: 468px; PADDING-TOP: 0px; WHITE-SPACE: nowrap; HEIGHT: 60px">
+<DIV class=lqm_ad lqm_tags="VC6,Windows,MFC,Dev,Intermediate" 
+lqm_format="468x60" lqm_zone="77" 
+lqm_publisher="lqm.codeproject.site"></DIV></DIV>
+<H2>Comments and Discussions</H2><A id=_comments name=_comments>&nbsp;</A>
+<DIV id=_MessageBoard onclick="return SwitchMessage(event, null)">
+<TABLE class="box forum" id=ForumTable cellSpacing=0 cellPadding=0>
+  <TBODY>
+  <TR>
+    <TD class="forum-header1 highlight"><B>You must <A 
+      href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx%3ffid%3d172035">Sign 
+      In</A> to use this message board.</B> (<A 
+      href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx%3ffid%3d172035">secure 
+      sign-in</A>)</TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=3 width="100%" border=0>
+        <TBODY>
+        <TR class=forum-header1>
+          <TD style="WHITE-SPACE: nowrap"><IMG 
+            style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: middle; WIDTH: 16px; HEIGHT: 16px; BORDER-RIGHT-WIDTH: 0px" 
+            alt=FAQ 
+            src="PropertyViewLib - CodeProject.files/info-16.gif">&nbsp;<A 
+            href="http://www.codeproject.com/KB/FAQs/MessageBoardsFAQ.aspx"><B>FAQ</B></A>&nbsp;</TD>
+          <TD style="WHITE-SPACE: nowrap; TEXT-ALIGN: right" colSpan=2>
+            <FORM 
+            style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px" 
+            action=/Search.aspx?fid=0 method=get><INPUT type=hidden value=172035 
+            name=fid><INPUT class=Frm_Input name=qf>&nbsp;<INPUT class=button type=submit value=Search> 
+          </FORM></TD></TR>
+        <TR class=forum-header2>
+          <TD style="WIDTH: 100%" colSpan=3>
+            <DIV style="TEXT-ALIGN: right">
+            <FORM 
+            style="PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px" 
+            action=/script/Forums/SetOptions.aspx?floc=%2fKB%2ftabs%2fPropertyViewLib.aspx&amp;fid=172035 
+            method=get><INPUT type=hidden value=172035 name=fid><INPUT 
+            type=hidden 
+            value=?floc=%2fKB%2ftabs%2fPropertyViewLib.aspx&amp;fid=172035 
+            name=currentQS><INPUT type=hidden 
+            value=/KB/tabs/PropertyViewLib.aspx name=floc><INPUT id=prof 
+            style="VERTICAL-ALIGN: middle" type=checkbox name=prof><LABEL 
+            for=prof>Profile popups</LABEL>&nbsp;&nbsp;&nbsp;&nbsp;Noise 
+            level<SELECT class=Frm_DropDown size=1 name=noise> <OPTION 
+              value=1>Very High</OPTION><OPTION value=2>High</OPTION><OPTION 
+              value=3 selected>Medium</OPTION><OPTION 
+              value=4>Low</OPTION><OPTION value=5>Very 
+            Low</OPTION></SELECT>&nbsp;&nbsp;Layout<SELECT class=Frm_DropDown 
+            size=1 name=view> <OPTION value=Quick 
+              selected>Normal</OPTION><OPTION value=Topic>Expand Posts 
+              only</OPTION><OPTION value=Expanded>Expand Posts &amp; 
+              Replies</OPTION><OPTION value=Thread>Thread View</OPTION><OPTION 
+              value=Normal>No Javascript</OPTION><OPTION value=Preview>No JS + 
+              Preview</OPTION></SELECT>&nbsp;&nbsp;Per page<SELECT 
+            class=Frm_DropDown size=1 name=mpp> <OPTION 
+              value=10>10</OPTION><OPTION value=25 selected>25</OPTION><OPTION 
+              value=50>50</OPTION></SELECT>&nbsp;&nbsp;&nbsp;<INPUT class=button type=submit value=Update name=SetOpt> 
+            </FORM></DIV></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD><A name=xx0xx></A>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%" border=0>
+        <TBODY>
+        <TR class=forum-navbar>
+          <TD>&nbsp;</TD>
+          <TD><A 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035">Refresh</A></TD>
+          <TD style="WHITE-SPACE: nowrap; TEXT-ALIGN: right"><SPAN 
+            class=subdue>First</SPAN> <SPAN class=subdue>Prev</SPAN><A 
+            class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=26#xx0xx" 
+            name=Frm_HoverNL>Next</A></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <TABLE class="fixed-layout blank-background" cellSpacing=0 cellPadding=0 
+      width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD><IMG height=5 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd Rt HdUnSel " id=F3651762_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx3651762xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/3651762/something-about-Eproperty.aspx" 
+                  rel=nofollow name=3651762 thread="3651762" 
+                  parent="0">something about Eproperty</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=7335573">xiang_yan</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">20:27 29 Oct 
+                  '10 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F3651762_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>CString 
+                              EPropertyCombo::GetTextValue()<BR>{<BR>int 
+                              nCurrent = 
+                              *(int*)m_pProperty;<BR>&nbsp;<BR>ASSERT(m_StringArray.GetSize()==m_Values.size());<BR>&nbsp;<BR>CString 
+                              s = "N/A";<BR>&nbsp;<BR>for( int i=0 ; 
+                              i<M_VALUES.SIZE() it?<br deal I do How exception; 
+                              makes it and 0x000000; is m_pProperty of value the 
+                              , debugging when } s; return &nbsp; out break so 
+                              found, was this for string break; 
+                              s="m_StringArray[i];" { ) m_Values[i]="=nCurrent" 
+                              if( i++ ; /></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=3651762">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/3651762/something-about-Eproperty.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF3651762 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HiVote Rt HdUnSel " id=F3643493_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx3643493xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/3643493/How-to-refresh-the-data.aspx" 
+                  rel=nofollow name=3643493 thread="3643493" parent="0">How to 
+                  refresh the data?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=7335573">xiang_yan</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">23:38 22 Oct 
+                  '10 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F3643493_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>When I change the display data, how 
+                              do I refresh the window to display the 
+                          data?<BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=3643493">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/3643493/How-to-refresh-the-data.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF3643493 
+                              style="WHITE-SPACE: nowrap">5.00/5 (1 vote) 
+                            </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd LoVote Rt HdUnSel " id=F3475332_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx3475332xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/3475332/Rado-button-as-property.aspx" 
+                  rel=nofollow name=3475332 thread="3475332" parent="0">Rado 
+                  button as property?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=6382259">Arrin</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">3:30 18 May 
+                  '10 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F3475332_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Hi,<BR>thanks for this great stuff, 
+                              now I have a question, is there any way to add a 
+                              radio button or can help me to do it, to this 
+                              property control??<BR>We have a check box, but 
+                              radio button is helpful too!<BR>&nbsp;<BR>Thanks 
+                              for any help<BR>Arrin<BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=3475332">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/3475332/Rado-button-as-property.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF3475332 
+                              style="WHITE-SPACE: nowrap">2.00/5 (1 vote) 
+                            </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd LoVote Rt HdUnSel " id=F2945506_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2945506xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2945506/Property-View-Lib-Control-for-Windows-Vista.aspx" 
+                  rel=nofollow name=2945506 thread="2945506" parent="0">Property 
+                  View Lib Control for Windows Vista</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=5987809">prakashchopade1982</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">1:27 2 Mar 
+                  '09 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2945506_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Hi..<BR>Is there any new version of 
+                              Property View Lib Control for Windows 
+                              Vista?<BR>Some times i am not able to see property 
+                              view lib control proeprly on Vista..Some 
+                              properties gets 
+                            blured..<BR>Thanks<BR>-Prakash<BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2945506">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2945506/Property-View-Lib-Control-for-Windows-Vista.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2945506 
+                              style="WHITE-SPACE: nowrap">1.50/5 (2 votes) 
+                              </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd LoVote Rt HdUnSel " id=F2660411_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2660411xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2660411/how-to-use-the-EXTreeCtrl.aspx" 
+                  rel=nofollow name=2660411 thread="2660411" parent="0">how to 
+                  use the EXTreeCtrl?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=5330108">alphasky_cx</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">21:52 31 Jul 
+                  '08 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2660411_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>hi<BR>thank for your excellent 
+                              work!<BR>I want to add ExTreeCtrl into a tab, and 
+                              EPropertyCtrl into other tab.<BR>No demo about 
+                              ExtreeCtrl is available, would you mind to give me 
+                              some tips?<BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2660411">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2660411/how-to-use-the-EXTreeCtrl.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2660411 
+                              style="WHITE-SPACE: nowrap">2.60/5 (5 votes) 
+                              </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd Rt HdUnSel " id=F2356960_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2356960xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2356960/How-can-I-put-Chinese-or-JS-charactors-into-the-Pr.aspx" 
+                  rel=nofollow name=2356960 thread="2356960" parent="0">How can 
+                  I put Chinese or JS charactors into the PropertyView?</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=2877847">zhang.china</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">22:21 13 Dec 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2356960_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Dear Jesper:<BR>Thank u for your 
+                              hard work. I'm trying to use the propertyviewlib, 
+                              and I find I can't put the Chinese or JS 
+                              charactors into the Editbox. How can 
+                              I?<BR>&nbsp;<BR>Regards <BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2356960">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2356960/How-can-I-put-Chinese-or-JS-charactors-into-the-Pr.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2356960 
+                              style="WHITE-SPACE: nowrap">4.00/5 (3 votes) 
+                              </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd Rt HdUnSel " id=F2333764_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2333764xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2333764/How-to-Make-a-Edit-ComboBox.aspx" 
+                  rel=nofollow name=2333764 thread="2333764" parent="0">How to 
+                  Make a Edit ComboBox?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=2928109">mconstor</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">5:19 25 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2333764_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>I want a ComboBox with a EditBox, 
+                              Like the ComboBox in MFC.<BR>I override the 
+                              HasEdit() in EPropertyCombo, it run ok.<BR>But 
+                              when I changed the string in EditBox, then click 
+                              next row, <BR>the string in EditBox changes to be 
+                              the "Choise 1".<BR>&nbsp;<BR>I want to know the 
+                              solution.<BR>Thanks very much! <BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2333764">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2333764/How-to-Make-a-Edit-ComboBox.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2333764 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2333993_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=34><A name=xx2333993xx></A><IMG 
+                  height=16 alt=Answer 
+                  src="PropertyViewLib - CodeProject.files/msg_answer.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2333993/Re-How-to-Make-a-Edit-ComboBox.aspx" 
+                  rel=nofollow name=2333993 thread="2333764" 
+                  parent="2333764">Re: How to Make a Edit ComboBox?</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=95621">Jesper 
+                  Knudsen</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">10:59 25 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2333993_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 34px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=34></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>I think it's a whole new type of 
+                              combo you are talking about. The implemented combo 
+                              points to an int, much like an enum where you can 
+                              only choose from a predefined set of choises. The 
+                              combo type you are talking about is probably 
+                              pointing to a string. I would instead inherit a 
+                              new type of property from the string property, and 
+                              add a button just like you did by overriding 
+                              HasEdit(). I'm sure you will get to a solution by 
+                              merging functionalities of the string- and the 
+                              combo property. Good luck with this. Let me know 
+                              if you eve get there, 
+                              thanks!<BR>&nbsp;<BR>Regards<BR>Jesper<BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2333764">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2333993/Re-How-to-Make-a-Edit-ComboBox.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2333993 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HiVote HdUnSel " id=F2335066_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=52><A name=xx2335066xx></A><IMG 
+                  height=16 alt=Answer 
+                  src="PropertyViewLib - CodeProject.files/msg_answer.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2335066/Re-How-to-Make-a-Edit-ComboBox.aspx" 
+                  rel=nofollow name=2335066 thread="2333764" 
+                  parent="2333993">Re: How to Make a Edit ComboBox?</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=2928109">mconstor</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">4:51 26 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2335066_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 52px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=52></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Thanks,I will try! <BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2333764">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2335066/Re-How-to-Make-a-Edit-ComboBox.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2335066 
+                              style="WHITE-SPACE: nowrap">5.00/5 (1 vote) 
+                            </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd Rt HdUnSel " id=F2307844_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2307844xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2307844/How-to-add-a-edit-box-after-the-checkbox.aspx" 
+                  rel=nofollow name=2307844 thread="2307844" parent="0">How to 
+                  add a edit box after the checkbox?</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=1628692">henpacked</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">23:08 6 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2307844_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>How to add a edit box after the 
+                              checkbox? <BR>&nbsp;<BR>
+                              <DIV class=ForumSig>Chen</DIV><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2307844">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2307844/How-to-add-a-edit-box-after-the-checkbox.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2307844 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2307922_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=34><A name=xx2307922xx></A><IMG 
+                  height=16 alt=Answer 
+                  src="PropertyViewLib - CodeProject.files/msg_answer.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2307922/Re-How-to-add-a-edit-box-after-the-checkbox.aspx" 
+                  rel=nofollow name=2307922 thread="2307844" 
+                  parent="2307844">Re: How to add a edit box after the 
+                  checkbox?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=95621">Jesper 
+                  Knudsen</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">23:51 6 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2307922_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 34px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=34></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>This is not yet possible. If you 
+                              merge functionalities of the bool checkbox 
+                              property and the numeric property, I think you 
+                              might be ably to figure out how to do this. Note 
+                              the base class EIconTextButtonProperty, that 
+                              implements most functionality of what you 
+                              need.<BR>&nbsp;<BR>Let me know if you ever get 
+                              anywhere with this <IMG alt="Smile | :)" 
+                              src="PropertyViewLib - CodeProject.files/smiley_smile.gif" 
+                              align=top> 
+                            <BR>&nbsp;<BR>Regards<BR>Jesper<BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2307844">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2307922/Re-How-to-add-a-edit-box-after-the-checkbox.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2307922 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd Rt HdUnSel " id=F2307814_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2307814xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2307814/How-to-add-a-spinbutton-in-the-number-edit-box.aspx" 
+                  rel=nofollow name=2307814 thread="2307814" parent="0">How to 
+                  add a spinbutton in the number edit box?</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=1628692">henpacked</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">22:50 6 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2307814_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Thanks for your good work!How to add 
+                              a spinbutton in the number edit box and respond 
+                              it? <BR>&nbsp;<BR>
+                              <DIV class=ForumSig>Chen</DIV><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2307814">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2307814/How-to-add-a-spinbutton-in-the-number-edit-box.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2307814 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd LoVote HdUnSel " id=F2307879_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=34><A name=xx2307879xx></A><IMG 
+                  height=16 alt=Answer 
+                  src="PropertyViewLib - CodeProject.files/msg_answer.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2307879/Re-How-to-add-a-spinbutton-in-the-number-edit-box.aspx" 
+                  rel=nofollow name=2307879 thread="2307814" 
+                  parent="2307814">Re: How to add a spinbutton in the number 
+                  edit box?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=95621">Jesper 
+                  Knudsen</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">23:24 6 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2307879_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 34px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=34></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>A good idea, but not implemented. I 
+                              think this could be done relatively easy. Just 
+                              check how EPropertyDouble uses the abilities of 
+                              it's base class EIconTextButtonProperty. For 
+                              example override the HasButton() 
+                              function...<BR>&nbsp;<BR>Regards 
+                              Jesper<BR>&nbsp;<BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2307814">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2307879/Re-How-to-add-a-spinbutton-in-the-number-edit-box.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2307879 
+                              style="WHITE-SPACE: nowrap">2.00/5 (1 vote) 
+                            </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2311099_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=52><A name=xx2311099xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2311099/Re-How-to-add-a-spinbutton-in-the-number-edit-box.aspx" 
+                  rel=nofollow name=2311099 thread="2307814" 
+                  parent="2307879">Re: How to add a spinbutton in the number 
+                  edit box?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=1628692">henpacked</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">17:04 8 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2311099_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 52px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=52></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>The spinbutton has been created 
+                              now,but I do not know how to respond it.Thanks. 
+                              <BR>&nbsp;<BR>
+                              <DIV class=ForumSig>Chen</DIV><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2307814">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2311099/Re-How-to-add-a-spinbutton-in-the-number-edit-box.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2311099 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2333985_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=70><A name=xx2333985xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2333985/Re-How-to-add-a-spinbutton-in-the-number-edit-box.aspx" 
+                  rel=nofollow name=2333985 thread="2307814" 
+                  parent="2311099">Re: How to add a spinbutton in the number 
+                  edit box?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=95621">Jesper 
+                  Knudsen</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">10:55 25 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2333985_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 70px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=70></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Check how a property responds to 
+                              button clicks. For example the combo property <IMG 
+                              alt="Smile | :)" 
+                              src="PropertyViewLib - CodeProject.files/smiley_smile.gif" 
+                              align=top> <BR>&nbsp;<BR>Sorry for the delayed 
+                              answer, hope you find a 
+                              solution<BR>&nbsp;<BR>Regards<BR>Jesper<BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2307814">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2333985/Re-How-to-add-a-spinbutton-in-the-number-edit-box.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2333985 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2682253_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=88><A name=xx2682253xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2682253/Re-How-to-add-a-spinbutton-in-the-number-edit-box.aspx" 
+                  rel=nofollow name=2682253 thread="2307814" 
+                  parent="2333985">Re: How to add a spinbutton in the number 
+                  edit box?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=2723746">unakie</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">18:43 17 Aug 
+                  '08 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2682253_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 88px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=88></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Anyone can tell me how to response 
+                              the CSpinButtonCtrl ?<BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2307814">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2682253/Re-How-to-add-a-spinbutton-in-the-number-edit-box.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2682253 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd LoVote Rt HdUnSel " id=F2303505_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2303505xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2303505/Thanks-for-your-good-work-Can-you-give-me-you-emai.aspx" 
+                  rel=nofollow name=2303505 thread="2303505" parent="0">Thanks 
+                  for your good work.Can you give me you emailaddress ? 
+                  [modified]</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=170589">hillstream</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">17:51 4 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2303505_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Just found your article. It's so 
+                              excited ,I cant help to tell my idea to you.<BR>I 
+                              am a chinese. Some sentence will be hard 
+                              understand .<BR>I want send a email to you, but i 
+                              can't find your email address.<BR>So I write mine: 
+                              haoyujie@datangmobile.cn and 
+                              haoyujie@sohu.com<BR>I have a more complex and 
+                              more automatic plan which write a low layer 
+                              interface:<BR>&nbsp;<BR>first ,i write a C style 
+                              head ,like this:<BR>&nbsp;<BR><PRE>&nbsp;
+<SPAN class=code-keyword>typedef</SPAN> <SPAN class=code-keyword>struct</SPAN> struChild1
+{
+<SPAN class=code-keyword>int</SPAN> count; <SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> &lt;v&gt;1;(1..200)(20);friendname;desc&lt;/v&gt; */</SPAN>
+}struChild1;
+&nbsp;
+<SPAN class=code-keyword>typedef</SPAN> <SPAN class=code-keyword>struct</SPAN> MainPropertyStru
+{
+struChild1 Node1; <SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> &lt;v&gt;Desc1&lt;/v&gt; */</SPAN>
+struChild2 Node2; <SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> &lt;v&gt;desc2&lt;/v&gt; */</SPAN>
+}MainPropertyStru; <SPAN class=code-comment>//</SPAN><SPAN class=code-comment>I have my mind to name same with last declare.
+</SPAN>
+<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> &lt;v&gt;1;(1..200)(20);friendname;desc&lt;/v&gt; */</SPAN>
+</PRE>means:<BR>&nbsp;<BR>1--writeable<BR>1..200-- 
+                              value renge<BR>20 --defaultvalue<BR>friend name : 
+                              left name in property dialog face<BR>desc: right 
+                              desc in 
+                              property<BR>==========================================================<BR>second 
+                              i write a C parser to parse this head file<BR>and 
+                              ,I get a dat list come from 
+                              this:<BR>-------------------------------------------------------<BR><PRE><SPAN class=code-keyword>typedef</SPAN> <SPAN class=code-keyword>struct</SPAN> pair *pair_p;
+<SPAN class=code-keyword>typedef</SPAN> <SPAN class=code-keyword>struct</SPAN> type * type_p;
+<SPAN class=code-keyword>typedef</SPAN> <SPAN class=code-keyword>unsigned</SPAN> lang_bitmap;
+<SPAN class=code-keyword>typedef</SPAN> pair_p datastrutype_p;
+&nbsp;
+
+<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> A name and a type.  */</SPAN>
+<SPAN class=code-keyword>struct</SPAN> pair {
+	pair_p next;
+	<SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>char</SPAN> *name;	
+	type_p type;
+	<SPAN class=code-keyword>enum</SPAN> gc_used_enum gc_used;
+	<SPAN class=code-keyword>struct</SPAN> fileloc line;
+	options_p opt;
+	size_t bit_length;	<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> bit segment len*/</SPAN>
+	<SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>char</SPAN> * desc;	<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> more desc */</SPAN>
+	pairdesc_p validate;
+	<SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>char</SPAN> *typealiasname;
+	<SPAN class=code-keyword>long</SPAN> reserved[<SPAN class=code-digit>2</SPAN>];	
+};
+&nbsp;
+
+&nbsp;
+<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> A description of a type.  */</SPAN>
+<SPAN class=code-keyword>struct</SPAN> type {
+	<SPAN class=code-keyword>enum</SPAN> typekind kind;		<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> type's type */</SPAN>
+	type_p next;
+	type_p pointer_to;
+	<SPAN class=code-keyword>enum</SPAN> gc_used_enum gc_used;
+	<SPAN class=code-keyword>union</SPAN> {
+		type_p p;
+		<SPAN class=code-keyword>struct</SPAN> {				
+			<SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>char</SPAN> *tag;		<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> struct name */</SPAN>
+			<SPAN class=code-keyword>struct</SPAN> fileloc line;
+			pair_p fields;		<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> struct field segment */</SPAN>
+			options_p opt;
+			
+			
+		} s;					<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> struct */</SPAN>
+		<SPAN class=code-keyword>struct</SPAN> {				<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> enum */</SPAN>
+			<SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>char</SPAN> *tag;		<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> name */</SPAN>
+			<SPAN class=code-keyword>struct</SPAN> fileloc line;	<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> pos */</SPAN>
+			eunmfield_p fields;		<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> enum fields */</SPAN>
+		} em;			<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> enum var add by haoyujie */</SPAN>
+		<SPAN class=code-keyword>struct</SPAN> stuDefine define;	<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> macro */</SPAN>
+		<SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>char</SPAN> *sc;				<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> const value */</SPAN>
+		<SPAN class=code-keyword>struct</SPAN> {
+			type_p p;				<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> element type of this array*/</SPAN>
+			<SPAN class=code-keyword>const</SPAN> <SPAN class=code-keyword>char</SPAN> *len;		<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> array len */</SPAN>
+		} a;					<SPAN class=code-comment>/*</SPAN><SPAN class=code-comment> array */</SPAN>
+&nbsp;
+	} u;
+};
+</PRE>&nbsp;<BR>========================================================<BR>i 
+                              dev this from 2004 ,i do much work.<BR>i 'd like 
+                              to share all this for you.<BR>now , i improving it 
+                              . I holp my work will be understand by others. i 
+                              don't wand dead with them.<BR>so ,i hope send me a 
+                              email ,and i will send all my sourcecode to 
+                              you.<BR><BR>&nbsp;<BR><BR>-- modified at 0:52 
+                              Monday 5th November, 2007 <BR>&nbsp;<BR><BR>-- 
+                              modified at 0:53 Monday 5th November, 2007 
+                              <BR>&nbsp;<BR>
+                              <DIV class=ForumSig>smallbird</DIV><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2303505">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2303505/Thanks-for-your-good-work-Can-you-give-me-you-emai.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2303505 
+                              style="WHITE-SPACE: nowrap">1.00/5 (1 vote) 
+                            </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd Rt HdUnSel " id=F2297825_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2297825xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2297825/Minor-bugs-with-double-and-int-casting.aspx" 
+                  rel=nofollow name=2297825 thread="2297825" parent="0">Minor 
+                  bugs with double and int casting</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=3689620">Zitoune 
+                  2</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">7:22 31 Oct 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2297825_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Hi,<BR>&nbsp;<BR>And first of all, 
+                              congratulation for your code. It's really easy to 
+                              use and very usefull !<BR>I noticed some buggs 
+                              with double property.<BR>When I type 8.2, the 
+                              displayed value is 8.19999999999. It's only on the 
+                              display, my pDouble is not affected (it's value is 
+                              well 8.20).<BR>&nbsp;<BR>I also noticed a problem 
+                              of casting with __int64 in SetNumeric method. I 
+                              use EPropertyInt with a long pointer (I use 
+                              SetType(4,true) method) with a scale set to 
+                              0.1<BR>Now, when I type 2.3 the value returned is 
+                              22 (instead of 23). I have a look in SetNumeric 
+                              method:<BR>dVarValue is well at 23.00000. When I 
+                              pass line __int64 n = (__int64)dVarValue; n return 
+                              22.<BR>This behaviour is very randomly (eg. 22 
+                              return 22, 23 return 22, 24 return 23...). It 
+                              appears that the problem is coming from compiler 
+                              (VC6) and mostly __ftol method used in assembly to 
+                              cast float to long. I tried with no scale : I 
+                              didn't encountered any problem with cast ?????<IMG 
+                              alt="Confused | :confused:" 
+                              src="PropertyViewLib - CodeProject.files/smiley_confused.gif" 
+                              align=top> <BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2297825">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2297825/Minor-bugs-with-double-and-int-casting.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2297825 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2299867_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=34><A name=xx2299867xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2299867/Re-Minor-bugs-with-double-and-int-casting.aspx" 
+                  rel=nofollow name=2299867 thread="2297825" 
+                  parent="2297825">Re: Minor bugs with double and int 
+                  casting</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=95621">Jesper 
+                  Knudsen</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">11:38 1 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2299867_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 34px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=34></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>I have never met roundnig problems 
+                              such as yours. I tried 8.2, and there's no problem 
+                              here..? I can see from the other problem that I'll 
+                              have to look at the rounding and type cast methods 
+                              used once again. I'm a little surpriced that I 
+                              haven't met something like this before. Let me 
+                              know if you find a soluion to this <IMG 
+                              alt="Smile | :)" 
+                              src="PropertyViewLib - CodeProject.files/smiley_smile.gif" 
+                              align=top> 
+                              <BR>&nbsp;<BR><BR>Regards<BR>Jesper<BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2297825">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2299867/Re-Minor-bugs-with-double-and-int-casting.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2299867 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2301508_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=52><A name=xx2301508xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2301508/Re-Minor-bugs-with-double-and-int-casting.aspx" 
+                  rel=nofollow name=2301508 thread="2297825" 
+                  parent="2299867">Re: Minor bugs with double and int 
+                  casting</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=3689620">Zitoune 
+                  2</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">7:07 2 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2301508_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 52px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=52></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>This problem is obviously comming 
+                              from compiler release. I don't have much solution 
+                              with casting problem. I made several test in a 
+                              small console application to catch the 
+                              problem.<BR>I divide 2.3 by 0.1, the int cast of 
+                              the result return 22. But if I multiply 2.3 by 
+                              10.0, casting return 23 (which is correct).<BR>I 
+                              don't really want to loose much time with this, I 
+                              know that these two result give differents bit map 
+                              for a floating number (see IEE754 specification). 
+                              I will probably made some change by doing my own 
+                              cast (not really optimised but who really 
+                              care...).<BR>&nbsp;<BR>Anyway, if you can just 
+                              tell me in few words where you update the value 
+                              displayed in the "double" field, so I can have a 
+                              look of this 8.2 becoming 8.199999 this will be 
+                              very helpfull for me !<BR>I will have a look on 
+                              this 
+                              problem.<BR>&nbsp;<BR>Thanks.<BR>&nbsp;<BR><IMG 
+                              alt="Wink | ;)" 
+                              src="PropertyViewLib - CodeProject.files/smiley_wink.gif" 
+                              align=top> <BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2297825">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2301508/Re-Minor-bugs-with-double-and-int-casting.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2301508 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2302594_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=70><A name=xx2302594xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2302594/Re-Minor-bugs-with-double-and-int-casting.aspx" 
+                  rel=nofollow name=2302594 thread="2297825" 
+                  parent="2301508">Re: Minor bugs with double and int 
+                  casting</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=95621">Jesper 
+                  Knudsen</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">11:54 3 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2302594_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 70px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=70></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>All numeric properties float, double 
+                              and int are subclasses of ENumericPropety, and I 
+                              think you should find the string formating here. 
+                              Check the 
+                              GetTextValue().<BR>&nbsp;<BR>Regards<BR>Jesper<BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2297825">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2302594/Re-Minor-bugs-with-double-and-int-casting.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2302594 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HdUnSel " id=F2304007_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=88><A name=xx2304007xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2304007/Re-Minor-bugs-with-double-and-int-casting.aspx" 
+                  rel=nofollow name=2304007 thread="2297825" 
+                  parent="2302594">Re: Minor bugs with double and int 
+                  casting</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=3689620">Zitoune 
+                  2</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">1:24 5 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2304007_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 88px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=88></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>Hi Jesper,<BR>&nbsp;<BR>Thank you 
+                              for your answer. I solve both of my problem today 
+                              :<BR>For 8.2 becomming 8.199999, this is comming 
+                              from Format method of CString. When you set 
+                              %.15lf, it will return 8.19999... but if you set 
+                              %.14lf and below, the result is good <IMG 
+                              alt="Confused | :confused:" 
+                              src="PropertyViewLib - CodeProject.files/smiley_confused.gif" 
+                              align=top> <BR>I modified the GetTextValue method 
+                              as below :<BR>int nNumSignificantDigits = 
+                              GetNumSignificantDigits(); //get from type 
+                              specific subclass<BR><CODE>//set decimal format 
+                              according to subclass SignificantDigit<BR>CString 
+                              qq,sFormat2;<BR>sFormat2.Format("%%.%ilf",nNumSignificantDigits);<BR>qq.Format("sFormat2",dGuiValue); 
+                              //enough decimals...</CODE><BR>This limit the 
+                              number of digit after decimal point to 
+                              NumSignificantDigit of subclass.<BR>&nbsp;<BR>For 
+                              the problem with casting, I use a lazy method by 
+                              using a string :<BR><CODE>char 
+                              s[255];<BR>sprintf(s,"%lf",dVarValue);<BR>__int64 
+                              n = atol(s);</CODE><BR>This is ugly, but it works 
+                              <IMG alt="Cool | :cool:" 
+                              src="PropertyViewLib - CodeProject.files/smiley_cool.gif" 
+                              align=top> <BR>&nbsp;<BR>Regards. 
+                              <BR>&nbsp;<BR>Olivier HIGELIN<BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2297825">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2304007/Re-Minor-bugs-with-double-and-int-casting.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2304007 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class="root msg-divide"><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd Rt HdUnSel " id=F2296498_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=16><A name=xx2296498xx></A><IMG 
+                  height=16 alt=Question 
+                  src="PropertyViewLib - CodeProject.files/msg_question.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2296498/How-to-let-a-Property-expands-itself-when-my-appli.aspx" 
+                  rel=nofollow name=2296498 thread="2296498" parent="0">How to 
+                  let a Property expands itself when my application run?</A> <A 
+                  title="Click to pin message" onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=2928109">mconstor</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">18:33 30 Oct 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2296498_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 16px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=16></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>When I make a new 
+                              group:<BR>PropList.StepIndentIn();<BR>PropList.AddPropDouble<BR>......<BR>PropList.StepIndentOut();<BR>&nbsp;<BR>When 
+                              the app run, I must click the button "+",to 
+                              expands the group<BR>how it can expands 
+                              itself,when the app 
+                            run?<BR>thanks!<BR>mcl<BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2296498">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2296498/How-to-let-a-Property-expands-itself-when-my-appli.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2296498 
+                              style="WHITE-SPACE: nowrap"></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd HiVote HdUnSel " id=F2299853_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=34><A name=xx2299853xx></A><IMG 
+                  height=16 alt=Answer 
+                  src="PropertyViewLib - CodeProject.files/msg_answer.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2299853/Re-How-to-let-a-Property-expands-itself-when-my-ap.aspx" 
+                  rel=nofollow name=2299853 thread="2296498" 
+                  parent="2296498">Re: How to let a Property expands itself when 
+                  my application run?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=95621">Jesper 
+                  Knudsen</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">11:29 1 Nov 
+                  '07 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2299853_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 34px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=34></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>There's nothing implemented to have 
+                              the sub-properties expanded by default. However 
+                              try to investigate what happens whe the + is 
+                              clicked. Then you could maybe add a bool parameter 
+                              to the StepIndentIn() funktion to determine if it 
+                              should be open or not.<BR>&nbsp;<BR>Thanks for 
+                              using the control, don't forget to vote (if it's a 
+                              five! <IMG alt="Smile | :)" 
+                              src="PropertyViewLib - CodeProject.files/smiley_smile.gif" 
+                              align=top> 
+                            <BR>&nbsp;<BR>Regards<BR>Jesper<BR><BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2296498">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2299853/Re-How-to-let-a-Property-expands-itself-when-my-ap.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2299853 
+                              style="WHITE-SPACE: nowrap">5.00/5 (2 votes) 
+                              </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR class=quick>
+          <TD class=msg-divide><IMG height=1 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR>
+        <TR class="MsgHd LoVote HdUnSel " id=F2621554_h0>
+          <TD width="100%">
+            <TABLE class=quickHd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR class=hover-row>
+                <TD class=Frm_MsgIndent width=52><A name=xx2621554xx></A><IMG 
+                  height=16 alt=General 
+                  src="PropertyViewLib - CodeProject.files/msg_general.gif" 
+                  width=16 align=top></TD>
+                <TD class="Frm_MsgSubject hover-container"><A 
+                  class=message-link 
+                  href="http://www.codeproject.com/Messages/2621554/Re-How-to-let-a-Property-expands-itself-when-my-ap.aspx" 
+                  rel=nofollow name=2621554 thread="2296498" 
+                  parent="2299853">Re: How to let a Property expands itself when 
+                  my application run?</A> <A title="Click to pin message" 
+                  onclick="return Pin(this);" 
+                  href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx#"><IMG 
+                  height=12 alt=Pin 
+                  src="PropertyViewLib - CodeProject.files/pin.gif" width=13 
+                  align=top border=0></A></TD>
+                <TD class=Frm_MsgIcon><IMG title=member height=16 alt=member 
+                  src="PropertyViewLib - CodeProject.files/member_sm.gif" 
+                  border=0></TD>
+                <TD class=Frm_MsgAuthor><A 
+                  href="http://www.codeproject.com/script/Membership/View.aspx?mid=4516882">Entrase</A></TD>
+                <TD class=Frm_MsgDate 
+                style="VERTICAL-ALIGN: top; WHITE-SPACE: nowrap">5:09 2 Jul 
+                  '08 &nbsp;</TD></TR></TBODY></TABLE></TD></TR>
+        <TR id=F2621554_h1 style="DISPLAY: none">
+          <TD width="100%">
+            <TABLE class=quickBd cellSpacing=0 cellPadding=0 width="100%" 
+            border=0>
+              <TBODY>
+              <TR>
+                <TD class=Frm_MsgIndent style="WIDTH: 52px"><IMG height=1 
+                  alt="" 
+                  src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+                  width=52></TD>
+                <TD class="MsgBd BdSel ">
+                  <TABLE cellSpacing=5 cellPadding=0 width="100%" border=0>
+                    <TBODY>
+                    <TR>
+                      <TD>
+                        <TABLE cellSpacing=0 cellPadding=0 width="100%" 
+border=0>
+                          <TBODY>
+                          <TR>
+                            <TD colSpan=2>It's much easier <IMG 
+                              alt="Smile | :)" 
+                              src="PropertyViewLib - CodeProject.files/smiley_smile.gif" 
+                              align=top> <BR>&nbsp;<BR>For 
+                              example:<BR>PropList.AddPropString(this, 
+                              "Something", &amp;empty, false )-&gt;m_bNodeOpen = 
+                              true;<BR>&nbsp;<BR>I even created the function for 
+                              this to assign the state of property to some bool 
+                              variable in the object. So now expandable 
+                              properties are able to store their state when 
+                              switching from one property host to another. It 
+                              looks like 
+                              this:<BR>&nbsp;<BR>PropList.AddPropString(this, 
+                              "Something", &amp;empty, false 
+                              )-&gt;SetOpenCache(&amp;m_bOpen);<BR>&nbsp;<BR>So 
+                              if you leave this property opened before switching 
+                              to another property host then it will be opened 
+                              again when switching back <IMG alt="Smile | :)" 
+                              src="PropertyViewLib - CodeProject.files/smiley_smile.gif" 
+                              align=top> You can ask me to give you my version 
+                              if you need by e-mail.<BR></TD></TR>
+                          <TR style="VERTICAL-ALIGN: middle">
+                            <TD class=msg-footer><A class=toolbar 
+                              href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2ftabs%2fPropertyViewLib.aspx">Sign 
+                              In</A>·<A class=toolbar title=View&nbsp;Thread 
+                              href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;tid=2296498">View&nbsp;Thread</A>·<A 
+                              class=toolbar title="Get permanent link" 
+                              href="http://www.codeproject.com/Messages/2621554/Re-How-to-let-a-Property-expands-itself-when-my-ap.aspx">Permalink</A></TD>
+                            <TD class=msg-footer 
+                              style="TEXT-ALIGN: right"><SPAN id=MVF2621554 
+                              style="WHITE-SPACE: nowrap">1.00/5 (1 vote) 
+                            </SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD><IMG height=5 alt="" 
+            src="C:\Documents and Settings\Administrator\桌面\PropertyViewLib - CodeProject.files\t(2).gif" 
+            width=1 border=0></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 cellPadding=2 width="100%">
+        <TBODY>
+        <TR class=forum-footer>
+          <TD>Last Visit: 22:04 13 Oct '11 &nbsp; &nbsp; Last Update: 22:22 13 
+            Oct '11 </TD>
+          <TD style="WHITE-SPACE: nowrap; TEXT-ALIGN: right"><INPUT id=_mbnUrl 
+            type=hidden 
+            value=/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=26><B>1</B><A 
+            class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=26#xx0xx" 
+            name=Frm_HoverNL>2</A><A class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=51#xx0xx" 
+            name=Frm_HoverNL>3</A><A class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=76#xx0xx" 
+            name=Frm_HoverNL>4</A><A class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=101#xx0xx" 
+            name=Frm_HoverNL>5</A><A class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=126#xx0xx" 
+            name=Frm_HoverNL>6</A><A class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=151#xx0xx" 
+            name=Frm_HoverNL>7</A><A class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=176#xx0xx" 
+            name=Frm_HoverNL>8</A><A class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=201#xx0xx" 
+            name=Frm_HoverNL>9</A> <A class=toolbar 
+            href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?fid=172035&amp;fr=26#xx0xx" 
+            name=Frm_HoverNL>Next 
+»</A></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV>
+<P class=small-text><IMG height=16 alt=General 
+src="PropertyViewLib - CodeProject.files/msg_general.gif" width=16 align=top> 
+General &nbsp;&nbsp; <IMG height=16 alt=News 
+src="PropertyViewLib - CodeProject.files/msg_news.gif" width=16 align=top> News 
+&nbsp;&nbsp; <IMG height=16 alt=Suggestion 
+src="PropertyViewLib - CodeProject.files/msg_idea.gif" width=16 align=top> 
+Suggestion &nbsp;&nbsp; <IMG height=16 alt=Question 
+src="PropertyViewLib - CodeProject.files/msg_question.gif" width=16 align=top> 
+Question &nbsp;&nbsp; <IMG height=16 alt=Bug 
+src="PropertyViewLib - CodeProject.files/msg_bug.gif" width=16 align=top> Bug 
+&nbsp;&nbsp; <IMG height=16 alt=Answer 
+src="PropertyViewLib - CodeProject.files/msg_answer.gif" width=16 align=top> 
+Answer &nbsp;&nbsp; <IMG height=16 alt=Joke 
+src="PropertyViewLib - CodeProject.files/msg_joke.gif" width=16 align=top> Joke 
+&nbsp;&nbsp; <IMG height=16 alt=Rant 
+src="PropertyViewLib - CodeProject.files/msg_rant.gif" width=16 align=top> Rant 
+&nbsp;&nbsp; <IMG height=16 alt=Admin 
+src="PropertyViewLib - CodeProject.files/msg_admin.gif" width=16 align=top> 
+Admin &nbsp;&nbsp; </P>
+<P class=small-text>Use Ctrl+Left/Right to switch messages, Ctrl+Up/Down to 
+switch threads, Ctrl+Shift+Left/Right to switch pages.</P>
+<DIV class=theme1-background style="HEIGHT: 2px"></DIV>
+<DIV class="extended tiny-text">
+<DIV class=row>
+<DIV class=float-left><A id=ctl00_PermaLink 
+href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx">Permalink</A> | 
+<A id=ctl00_AdvertiseLink href="http://lakequincy.com/">Advertise </A>| <A 
+id=ctl00_PrivacyLink 
+href="http://www.codeproject.com/info/privacy.aspx">Privacy</A> | <A 
+id=ctl00_Mobile 
+href="http://www.codeproject.com/KB/tabs/PropertyViewLib.aspx?display=Mobile" 
+rel=nofollow>Mobile</A> <BR>| Web23 | 2.5.111012.1 </DIV>
+<DIV class="float-right align-right">Article Copyright 2005 by Jesper 
+Knudsen<BR>Everything else Copyright © <A 
+href="mailto:webmaster@codeproject.com">CodeProject</A>, 1999-2011 <BR><A 
+id=ctl00_TermsOfUseLink 
+href="http://www.codeproject.com/info/TermsOfUse.aspx">Terms of Use</A> 
+</DIV></DIV></DIV><BR clear=all></DIV>
+<DIV class=text-sidebar id=ctl00_ContentSide>
+<SCRIPT type=text/javascript>document.write(unescape('%0d%0a%0d%0a%3cdiv class%3d%22results%22%3e%0d%0a%0d%0a%09%3cdiv class%3d%22container-adwords%22%3e%0d%0a%09%09%3ca id%3d%22ctl00_RelatedAds_RelatedResults_ctl01_Link%22 href%3d%22%2fscript%2fCatalog%2fRedir.aspx%3fctid%3d1389%26amp%3bcttype%3d2%22 target%3d%22_blank%22%3e%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl01_Title%22 class%3d%22title%22%3eMX-Frame%3c%2fspan%3e%3cbr %2f%3e%0d%0a%09%09%09%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl01_Teaser%22 class%3d%22desc%22%3eBusiness Application Framework%3c%2fspan%3e%3cbr %2f%3e%0d%0a%09%09%09%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl01_Url%22 class%3d%22link%22%3ewww.mxframe.net%3c%2fspan%3e%3c%2fa%3e%0d%0a%09%3c%2fdiv%3e%0d%0a%0d%0a%09%3cdiv class%3d%22container-adwords%22%3e%0d%0a%09%09%3ca id%3d%22ctl00_RelatedAds_RelatedResults_ctl02_Link%22 href%3d%22%2fscript%2fCatalog%2fRedir.aspx%3fctid%3d1403%26amp%3bcttype%3d2%22 target%3d%22_blank%22%3e%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl02_Title%22 class%3d%22title%22%3eSearch for ASP.NET%3c%2fspan%3e%3cbr %2f%3e%0d%0a%09%09%09%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl02_Teaser%22 class%3d%22desc%22%3eAdd search engine functionality to your ASP.NET web site. Features...%3c%2fspan%3e%3cbr %2f%3e%0d%0a%09%09%09%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl02_Url%22 class%3d%22link%22%3ekeyoti.com%3c%2fspan%3e%3c%2fa%3e%0d%0a%09%3c%2fdiv%3e%0d%0a%0d%0a%3c%2fdiv%3e%0d%0a'));</SCRIPT>
+
+<DIV style="MARGIN: 10px 0px; WIDTH: 160px">
+<DIV class=lqm_ad lqm_tags="VC6,Windows,MFC,Dev,Intermediate" 
+lqm_format="160x600" lqm_zone="77" 
+lqm_publisher="lqm.codeproject.site"></DIV></DIV>
+<DIV class=announce>
+<DIV class=announce-header 
+id=ctl00_RelatedArticles_RelatedResults_ctl00_header>See Also...</DIV>
+<DIV class=announce-content>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl02_Link 
+href="http://www.codeproject.com/KB/library/XuiFramework.aspx">XUIFramework: A 
+GUI Framework based on XML and MFC</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl03_Link 
+href="http://www.codeproject.com/KB/showcase/dundas_chartani.aspx">Creating 
+animations with Dundas Chart for ASP.NET</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl04_Link 
+href="http://www.codeproject.com/KB/showcase/dundas_smartlabels.aspx">Smarter 
+Data Labels with Dundas Chart SmartLabels</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl05_Link 
+href="http://www.codeproject.com/KB/showcase/Dundas_chartareas.aspx">Understanding 
+Chart Areas with Dundas Chart for .NET</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl06_Link 
+href="http://www.codeproject.com/KB/showcase/DundasMap_AJAX.aspx">Making Sense 
+of Geographic Data with Dundas Map and AJAX</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl07_Link 
+href="http://www.codeproject.com/KB/vbscript/gopal_code.aspx">DestroyWindow in 
+VBScript</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl08_Link 
+href="http://www.codeproject.com/KB/vb/SmarLink.aspx">SmartLink</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl09_Link 
+href="http://www.codeproject.com/KB/showcase/HeraAppFramework.aspx">Create 
+data-driven applications with the Hera Application Framework</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl10_Link 
+href="http://www.codeproject.com/KB/showcase/RedGate_SelfDocDatabase.aspx">Towards 
+the self-documenting database: extended properties</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl11_Link 
+href="http://www.codeproject.com/KB/showcase/digitalsignatures.aspx">Digital 
+Signatures and PDF Documents</A> </DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl12_Link 
+href="http://www.codeproject.com/KB/database/Windows_Mobile_Db_Images.aspx">Reading 
+and Writing Images From a Windows Mobile Database using UltraLite 10 (C#)</A> 
+</DIV>
+<DIV class=container-related-item><A class=title 
+id=ctl00_RelatedArticles_RelatedResults_ctl13_Link 
+href="http://www.codeproject.com/KB/vb/Windows_Media_Player_COM.aspx">WMP Power 
+Hour APP</A> </DIV></DIV></DIV>
+<DIV class=announce>
+<DIV class=announce-header>The Daily Insider</DIV>
+<DIV class=announce-content>
+<DIV><A id=ctl00_News_News_ctl01_Link 
+href="http://citizen428.net/archives/434">30 free programming 
+books</A></DIV>Daily News: <A id=ctl00_News_News_ctl02_Subscribe 
+href="http://www.codeproject.com/Feature/Insider/">Signup now</A>. 
+</DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV id=lqm_AdTable style="DISPLAY: none"></DIV>
+<SCRIPT language=Javascript 
+src="PropertyViewLib - CodeProject.files/jquery.min.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT type=text/javascript>//<![CDATA[
+if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/script/JS/jquery-1.6.2.min.js' type='text/javascript' %3E%3C/script%3E"));
+}//]]></SCRIPT>
+
+<SCRIPT language=Javascript 
+src="PropertyViewLib - CodeProject.files/article.min.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT language=Javascript src="PropertyViewLib - CodeProject.files/m.min.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT language=Javascript type=text/javascript>//<![CDATA[
+var socialLinks = new social();
+socialLinks.PlaceholderId="ATD";socialLinks.ObjectId=10125;
+socialLinks.ObjectTypeId=2;
+socialLinks.addtoMethod=1;
+socialLinks.Horizontal=false;
+socialLinks.Showname=true;
+socialLinks.setupLinks("socialLinks", escape(document.location.href),escape(document.title), 100, 0, "small-text Bold", "AddTo");
+socialLinks.setupMenu();
+if($.LqmAds)$.LqmAds();
+var oSrchFlt = false, oSrchBox=false,srchBoxFoc=false;
+$(document).ready(function() {
+ InitWatermark('sb_tb', 'Search');
+ var sbar = $('#sb_tb'); 
+ var sfilter = $('#SearchFilter');
+ if (sbar && sfilter) {
+  sfilter.removeClass('popup'); sfilter.hide();
+  sbar.blur(function() { if (!oSrchFlt)sfilter.hide();srchBoxFoc=false; });
+  sbar.focus(function() { oSrchFlt=false;srchBoxFoc=true;sfilter.show(); });
+  sbar.mouseleave(function() { oSrchBox=false; });
+  sbar.mouseover(function() { oSrchBox=true; });
+  sfilter.mouseleave(function() { oSrchFlt=false; if (!srchBoxFoc&&!oSrchBox)sfilter.hide();});
+  sfilter.mouseover(function() { oSrchFlt=true; });
+ }
+});
+$(document).ready(function() { anchorAnimate(); });
+$("#ctl00_RateArticle_RateItemWrapper").removeClass("container-rating");$('#clear-rate_ctl00_RateArticle_RCD').click(function () { $('#ctl00_RateArticle_RCD').hide(); return false;});
+function PostBack_ctl00_RateArticle_RateItemWrapper() {
+  return rateItem(10125,2,1,true,true,3);
+}
+function ChkRtctl00_RateArticle(val, objId) {if (val<=3||true) {
+$('div[name=RateItem_' + objId + '] .rating-comment').css("display","");}
+else $('div[name=RateItem_' + objId + '] .rating-comment').css("display","none");}
+
+
+//]]>
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1735123-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setDomainName', 'www.codeproject.com']);
+	_gaq.push(['_setSessionTimeout', '1200']); 
+
+	(function () {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})(); 
+</SCRIPT>
+</BODY></HTML>
